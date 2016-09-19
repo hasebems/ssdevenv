@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "DBAA513292B0390650081037AEC7EE5A3D8EF3F6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "73F90C0A2C1618BB16820A8AE22C67338F016E6D" : 9223372036854775807,
+    "DBAA513292B0390650081037AEC7EE5A3D8EF3F6" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E6848943-F933-46F7-B375-5753CAC87C95",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "73F90C0A2C1618BB16820A8AE22C67338F016E6D" : "Musical_Sound_Generator_Framework\/",
+    "DBAA513292B0390650081037AEC7EE5A3D8EF3F6" : "ssdevenv\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ssdevenv",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "xcode\/ssdevenv.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/hasebems\/Musical_Sound_Generator_Framework.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "73F90C0A2C1618BB16820A8AE22C67338F016E6D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/hasebems\/ssdevenv.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DBAA513292B0390650081037AEC7EE5A3D8EF3F6"
+    }
+  ]
+}
