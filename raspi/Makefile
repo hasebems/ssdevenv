@@ -36,6 +36,7 @@ OBJECTS = Stk.o Noise.o Envelope.o \
 	Messager.o Skini.o utilities.o \
 	RtMidi.o RtAudio.o Thread.o Mutex.o Socket.o TcpServer.o ssdevenv_main.o
 
+
 ### add user app from here
 OTHER_OBJECTS = mf_instrument.o mf_voice_context.o mf_note.o msgf_configuration.o \
 	msgf_osc_pipe.o msgf_amp_pipe.o \
@@ -65,13 +66,13 @@ ssdev_msgf_mf: $(OBJECTS) $(OTHER_OBJECTS)
 		$(CC) $(LDFLAGS) $(CFLAGS_OTHER) $(DEFS_OTHER) -o $@ $(OBJECT_PATH)/*.o $(LIBRARY)
 ### to here
 
-#%.o : %.cpp $(OBJECT_PATH)/.placeholder
-#		echo "--------"
-#		echo "compiling" $@
-#		$(CC) $(CFLAGS) $(DEFS) -c $(<) -o $(OBJECT_PATH)/$@
+OBJECTS : %.cpp $(OBJECT_PATH)/.placeholder
+		echo "--------"
+		echo "compiling" $@
+		$(CC) $(CFLAGS) $(DEFS) -c $(<) -o $(OBJECT_PATH)/$@
 
 ### add user app from here
-%.o : %.cpp $(OBJECT_PATH)/.placeholder
+OTHER_OBJECTS : %.cpp $(OBJECT_PATH)/.placeholder
 		echo "--------"
 		echo "compiling" $@
 		$(CC) $(CFLAGS_OTHER) $(DEFS_OTHER) -c $(<) -o $(OBJECT_PATH)/$@
