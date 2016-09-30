@@ -66,13 +66,13 @@ ssdev_msgf_mf: $(OBJECTS) $(OTHER_OBJECTS)
 		$(CC) $(LDFLAGS) $(CFLAGS_OTHER) $(DEFS_OTHER) -o $@ $(OBJECT_PATH)/*.o $(LIBRARY)
 ### to here
 
-OBJECTS : %.cpp $(OBJECT_PATH)/.placeholder
+$(OBJECTS) : %.cpp $(OBJECT_PATH)/.placeholder
 		echo "--------"
 		echo "compiling" $@
 		$(CC) $(CFLAGS) $(DEFS) -c $(<) -o $(OBJECT_PATH)/$@
 
 ### add user app from here
-OTHER_OBJECTS : %.cpp $(OBJECT_PATH)/.placeholder
+$(OTHER_OBJECTS) : %.cpp $(OBJECT_PATH)/.placeholder
 		echo "--------"
 		echo "compiling" $@
 		$(CC) $(CFLAGS_OTHER) $(DEFS_OTHER) -c $(<) -o $(OBJECT_PATH)/$@
