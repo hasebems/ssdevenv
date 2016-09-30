@@ -50,8 +50,8 @@ CFLAGS  += -I../stk_include -I$(APP_SRC_PATH)
 LIBRARY = -lpthread -lasound -lm
 
 ### add user app from here
-DEFS_OTHER   = DEFS + -D_MSGF_MF_
-CFLAGS_OTHER = CFLAGS + -I$(OTHER_SRC_PATH1) -I$(OTHER_SRC_PATH2) -I$(OTHER_SRC_PATH3)
+DEFS_OTHER   = $(DEFS) -D_MSGF_MF_
+CFLAGS_OTHER = $(CFLAGS) -I$(OTHER_SRC_PATH1) -I$(OTHER_SRC_PATH2) -I$(OTHER_SRC_PATH3)
 ### to here
 
 all : $(PROGRAMS)
