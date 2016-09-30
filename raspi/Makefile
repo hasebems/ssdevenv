@@ -2,7 +2,7 @@
 #	ssdevenv Makefile
 #
 .SILENT:
-PROGRAMS = ssdevenv
+PROGRAMS = ssdev_msgf_mf
 RM = /bin/rm
 
 ### add user app from here
@@ -44,7 +44,7 @@ OTHER_OBJECTS = mf_instrument.o mf_voice_context.o mf_note.o msgf_configuration.
 ### to here
 
 CC       = g++
-DEFS     =   -D HAVE_GETTIMEOFDAY  -D __LINUX_ALSA__　-D __LITTLE_ENDIAN__
+DEFS     =   -DHAVE_GETTIMEOFDAY  -D__LINUX_ALSA__　-D__LITTLE_ENDIAN__
 CFLAGS   = -O3 -Wall
 CFLAGS  += -I../stk_include -I$(APP_SRC_PATH)
 LIBRARY = -lpthread -lasound -lm
