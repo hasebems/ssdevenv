@@ -1,18 +1,27 @@
+#
+#	ssdevenv Makefile
+#
 .SILENT:
 PROGRAMS = ssdevenv
 RM = /bin/rm
 
-MSGF_AE_SRC_PATH = ../Musical_Sound_Generator_Framework/audio_engine
-MSGF_MG_SRC_PATH = ../Musical_Sound_Generator_Framework/msgf_general
-MSGF_MF_SRC_PATH = ../Musical_Sound_Generator_Framework/magic_flute
+### add user app from here
+OTHER_SRC_PATH1 = ../Musical_Sound_Generator_Framework/audio_engine
+OTHER_SRC_PATH2 = ../Musical_Sound_Generator_Framework/msgf_general
+OTHER_SRC_PATH3 = ../Musical_Sound_Generator_Framework/magic_flute
+### to here
+
 STK_SRC_PATH = ../stk
 APP_SRC_PATH = ../app
-vpath %.cpp $(MSGF_AE_SRC_PATH):$(MSGF_MG_SRC_PATH):$(MSGF_MF_SRC_PATH):$(STK_SRC_PATH):$(APP_SRC_PATH)
+
+### add user app
+vpath %.cpp $(STK_SRC_PATH):$(APP_SRC_PATH):$(OTHER_SRC_PATH1):$(OTHER_SRC_PATH2):$(OTHER_SRC_PATH3)
 
 OBJECT_PATH = Release
 vpath %.o $(OBJECT_PATH)
 
-INCLUDE_PATH = ../stk_include:$(MSGF_AE_SRC_PATH):$(MSGF_MG_SRC_PATH):$(MSGF_MF_SRC_PATH):$(APP_SRC_PATH)
+### add user app
+INCLUDE_PATH = ../stk_include:$(APP_SRC_PATH):$(OTHER_SRC_PATH1):$(OTHER_SRC_PATH2):$(OTHER_SRC_PATH3)
 vpath %.h $(INCLUDE_PATH)
 
 OBJECTS = Stk.o Noise.o Envelope.o \
@@ -23,25 +32,37 @@ OBJECTS = Stk.o Noise.o Envelope.o \
 	JCRev.o \
 	Voicer.o Sphere.o \
 	Messager.o Skini.o utilities.o \
-	RtMidi.o RtAudio.o Thread.o Mutex.o Socket.o TcpServer.o \
-	mf_instrument.o mf_voice_context.o mf_note.o msgf_configuration.o \
+	RtMidi.o RtAudio.o Thread.o Mutex.o Socket.o TcpServer.o
+
+### add user app from here
+OTHER_OBJECTS = mf_instrument.o mf_voice_context.o mf_note.o msgf_configuration.o \
 	msgf_osc_pipe.o msgf_amp_pipe.o \
 	msgf_if.o msgf_audio_buffer.o msgf_eg.o msgf_eg2seg.o msgf_eg4seg.o \
 	msgf_event_info.o msgf_instrument_for_check.o msgf_instrument.o \
 	msgf_level_check.o msgf_lfo.o msgf_note.o msgf_part.o msgf_voice_context.o \
 	ssdevenv_main.o
+### to here
 
 CC       = g++
-DEFS     =   -DHAVE_GETTIMEOFDAY  -D__LINUX_ALSA__　-D__LITTLE_ENDIAN__
-DEFS    += -D_MSGF_MF_
+DEFS     =   -D HAVE_GETTIMEOFDAY  -D __LINUX_ALSA__　-D __LITTLE_ENDIAN__
 CFLAGS   = -O3 -Wall
-CFLAGS  += -I../stk_include -I$(MSGF_AE_SRC_PATH) -I$(MSGF_MG_SRC_PATH) -I$(MSGF_MF_SRC_PATH) -I$(APP_SRC_PATH)
+CFLAGS  += -I../stk_include -I$(APP_SRC_PATH)
 LIBRARY = -lpthread -lasound -lm
+
+### add user app from here
+DEFS_OTHER   = DEFS + -D_MSGF_MF_
+CFLAGS_OTHER = CFLAGS + -I$(OTHER_SRC_PATH1) -I$(OTHER_SRC_PATH2) -I$(OTHER_SRC_PATH3)
+### to here
 
 all : $(PROGRAMS)
 
 ssdevenv: $(OBJECTS)
-		$(CC) $(LDFLAGS) $(CFLAGS) $(DEFS) -o ssdevenv $(OBJECT_PATH)/*.o $(LIBRARY)
+		$(CC) $(LDFLAGS) $(CFLAGS) $(DEFS) -o $@ $(OBJECT_PATH)/*.o $(LIBRARY)
+
+### add user app from here
+ssdev_msgf_mf: $(OBJECTS) $(OTHER_OBJECTS)
+		$(CC) $(LDFLAGS) $(CFLAGS_OTHER) $(DEFS_OTHER) -o $@ $(OBJECT_PATH)/*.o $(LIBRARY)
+### to here
 
 %.o : %.cpp $(OBJECT_PATH)/.placeholder
 		$(CC) $(CFLAGS) $(DEFS) -c $(<) -o $(OBJECT_PATH)/$@
