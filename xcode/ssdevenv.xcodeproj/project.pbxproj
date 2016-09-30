@@ -34,32 +34,73 @@
 		FBA13B051D8CCEB7000A28F7 /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13AC81D8CCEB7000A28F7 /* Thread.cpp */; };
 		FBA13B0A1D8CCEB7000A28F7 /* Voicer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13ACD1D8CCEB7000A28F7 /* Voicer.cpp */; };
 		FBC663D31D8F4EE100224316 /* ssdevenv_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC663D21D8F4EE100224316 /* ssdevenv_main.cpp */; };
-		FBD96E7C1D855D21006AE339 /* msgf_if.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E611D855D21006AE339 /* msgf_if.cpp */; };
 		FBD96E7D1D855D21006AE339 /* msgf_audio_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E641D855D21006AE339 /* msgf_audio_buffer.cpp */; };
 		FBD96E7E1D855D21006AE339 /* msgf_eg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E661D855D21006AE339 /* msgf_eg.cpp */; };
-		FBD96E7F1D855D21006AE339 /* msgf_eg2seg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E681D855D21006AE339 /* msgf_eg2seg.cpp */; };
-		FBD96E801D855D21006AE339 /* msgf_eg4seg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E6A1D855D21006AE339 /* msgf_eg4seg.cpp */; };
-		FBD96E811D855D21006AE339 /* msgf_event_info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E6C1D855D21006AE339 /* msgf_event_info.cpp */; };
-		FBD96E821D855D21006AE339 /* msgf_instrument_for_check.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E6F1D855D21006AE339 /* msgf_instrument_for_check.cpp */; };
-		FBD96E831D855D21006AE339 /* msgf_instrument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E711D855D21006AE339 /* msgf_instrument.cpp */; };
-		FBD96E841D855D21006AE339 /* msgf_level_check.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E721D855D21006AE339 /* msgf_level_check.cpp */; };
-		FBD96E851D855D21006AE339 /* msgf_lfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E731D855D21006AE339 /* msgf_lfo.cpp */; };
-		FBD96E861D855D21006AE339 /* msgf_note.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E751D855D21006AE339 /* msgf_note.cpp */; };
-		FBD96E871D855D21006AE339 /* msgf_part.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E771D855D21006AE339 /* msgf_part.cpp */; };
-		FBD96E881D855D21006AE339 /* msgf_voice_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E7A1D855D21006AE339 /* msgf_voice_context.cpp */; };
-		FBD96E9C1D855D39006AE339 /* msgf_osc_pipe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E8F1D855D39006AE339 /* msgf_osc_pipe.cpp */; };
-		FBD96E9D1D855D39006AE339 /* msgf_amp_pipe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E911D855D39006AE339 /* msgf_amp_pipe.cpp */; };
-		FBD96EA91D855D50006AE339 /* mf_instrument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96EA11D855D50006AE339 /* mf_instrument.cpp */; };
-		FBD96EAA1D855D50006AE339 /* mf_voice_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96EA21D855D50006AE339 /* mf_voice_context.cpp */; };
-		FBD96EAB1D855D50006AE339 /* mf_note.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96EA51D855D50006AE339 /* mf_note.cpp */; };
-		FBD96EAC1D855D50006AE339 /* msgf_configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96EA71D855D50006AE339 /* msgf_configuration.cpp */; };
 		FBD96F241D8567AB006AE339 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD96F231D8567AB006AE339 /* CoreAudio.framework */; };
 		FBD96F261D8567BB006AE339 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD96F251D8567BB006AE339 /* CoreMIDI.framework */; };
 		FBD96F281D8567CD006AE339 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD96F271D8567CD006AE339 /* CoreFoundation.framework */; };
+		FBF62EFE1D9DC6AF0026D3C2 /* Socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13AC21D8CCEB7000A28F7 /* Socket.cpp */; };
+		FBF62EFF1D9DC6AF0026D3C2 /* OnePole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB7679FD1D8D749200C2593B /* OnePole.cpp */; };
+		FBF62F001D9DC6AF0026D3C2 /* FileWvIn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13AA01D8CCEB7000A28F7 /* FileWvIn.cpp */; };
+		FBF62F011D9DC6AF0026D3C2 /* FileWvOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13AA11D8CCEB7000A28F7 /* FileWvOut.cpp */; };
+		FBF62F021D9DC6AF0026D3C2 /* msgf_eg2seg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E681D855D21006AE339 /* msgf_eg2seg.cpp */; };
+		FBF62F031D9DC6AF0026D3C2 /* mf_voice_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96EA21D855D50006AE339 /* mf_voice_context.cpp */; };
+		FBF62F041D9DC6AF0026D3C2 /* msgf_event_info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E6C1D855D21006AE339 /* msgf_event_info.cpp */; };
+		FBF62F051D9DC6AF0026D3C2 /* msgf_instrument_for_check.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E6F1D855D21006AE339 /* msgf_instrument_for_check.cpp */; };
+		FBF62F061D9DC6AF0026D3C2 /* DelayA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB7679F01D8D719400C2593B /* DelayA.cpp */; };
+		FBF62F071D9DC6AF0026D3C2 /* mf_note.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96EA51D855D50006AE339 /* mf_note.cpp */; };
+		FBF62F081D9DC6AF0026D3C2 /* msgf_lfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E731D855D21006AE339 /* msgf_lfo.cpp */; };
+		FBF62F091D9DC6AF0026D3C2 /* msgf_voice_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E7A1D855D21006AE339 /* msgf_voice_context.cpp */; };
+		FBF62F0A1D9DC6AF0026D3C2 /* RtAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13ABA1D8CCEB7000A28F7 /* RtAudio.cpp */; };
+		FBF62F0B1D9DC6AF0026D3C2 /* Messager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13AAD1D8CCEB7000A28F7 /* Messager.cpp */; };
+		FBF62F0C1D9DC6AF0026D3C2 /* msgf_eg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E661D855D21006AE339 /* msgf_eg.cpp */; };
+		FBF62F0D1D9DC6AF0026D3C2 /* Voicer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13ACD1D8CCEB7000A28F7 /* Voicer.cpp */; };
+		FBF62F0E1D9DC6AF0026D3C2 /* msgf_configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96EA71D855D50006AE339 /* msgf_configuration.cpp */; };
+		FBF62F0F1D9DC6AF0026D3C2 /* msgf_part.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E771D855D21006AE339 /* msgf_part.cpp */; };
+		FBF62F101D9DC6AF0026D3C2 /* msgf_level_check.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E721D855D21006AE339 /* msgf_level_check.cpp */; };
+		FBF62F111D9DC6AF0026D3C2 /* msgf_note.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E751D855D21006AE339 /* msgf_note.cpp */; };
+		FBF62F121D9DC6AF0026D3C2 /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13AC31D8CCEB7000A28F7 /* Sphere.cpp */; };
+		FBF62F131D9DC6AF0026D3C2 /* msgf_audio_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E641D855D21006AE339 /* msgf_audio_buffer.cpp */; };
+		FBF62F141D9DC6AF0026D3C2 /* RtMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13ABB1D8CCEB7000A28F7 /* RtMidi.cpp */; };
+		FBF62F151D9DC6AF0026D3C2 /* FileWrite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13A9F1D8CCEB7000A28F7 /* FileWrite.cpp */; };
+		FBF62F161D9DC6AF0026D3C2 /* Delay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB7679EF1D8D719400C2593B /* Delay.cpp */; };
+		FBF62F171D9DC6AF0026D3C2 /* ssdevenv_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBC663D21D8F4EE100224316 /* ssdevenv_main.cpp */; };
+		FBF62F181D9DC6AF0026D3C2 /* Skini.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13AC11D8CCEB7000A28F7 /* Skini.cpp */; };
+		FBF62F191D9DC6AF0026D3C2 /* msgf_instrument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E711D855D21006AE339 /* msgf_instrument.cpp */; };
+		FBF62F1A1D9DC6AF0026D3C2 /* msgf_osc_pipe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E8F1D855D39006AE339 /* msgf_osc_pipe.cpp */; };
+		FBF62F1B1D9DC6AF0026D3C2 /* Modulate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB7679F71D8D731E00C2593B /* Modulate.cpp */; };
+		FBF62F1C1D9DC6AF0026D3C2 /* msgf_amp_pipe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E911D855D39006AE339 /* msgf_amp_pipe.cpp */; };
+		FBF62F1D1D9DC6AF0026D3C2 /* FileRead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13A9E1D8CCEB7000A28F7 /* FileRead.cpp */; };
+		FBF62F1E1D9DC6AF0026D3C2 /* DelayL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB7679F11D8D719400C2593B /* DelayL.cpp */; };
+		FBF62F1F1D9DC6AF0026D3C2 /* FileLoop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13A9D1D8CCEB7000A28F7 /* FileLoop.cpp */; };
+		FBF62F201D9DC6AF0026D3C2 /* Mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13AB11D8CCEB7000A28F7 /* Mutex.cpp */; };
+		FBF62F211D9DC6AF0026D3C2 /* TcpServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13AC71D8CCEB7000A28F7 /* TcpServer.cpp */; };
+		FBF62F221D9DC6AF0026D3C2 /* Noise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB7679F91D8D736400C2593B /* Noise.cpp */; };
+		FBF62F231D9DC6AF0026D3C2 /* JCRev.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13AAB1D8CCEB7000A28F7 /* JCRev.cpp */; };
+		FBF62F241D9DC6AF0026D3C2 /* msgf_if.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E611D855D21006AE339 /* msgf_if.cpp */; };
+		FBF62F251D9DC6AF0026D3C2 /* Envelope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB7679F51D8D71D700C2593B /* Envelope.cpp */; };
+		FBF62F261D9DC6AF0026D3C2 /* Fir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13AA21D8CCEB7000A28F7 /* Fir.cpp */; };
+		FBF62F271D9DC6AF0026D3C2 /* Stk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13AC41D8CCEB7000A28F7 /* Stk.cpp */; };
+		FBF62F281D9DC6AF0026D3C2 /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBA13AC81D8CCEB7000A28F7 /* Thread.cpp */; };
+		FBF62F291D9DC6AF0026D3C2 /* mf_instrument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96EA11D855D50006AE339 /* mf_instrument.cpp */; };
+		FBF62F2A1D9DC6AF0026D3C2 /* msgf_eg4seg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD96E6A1D855D21006AE339 /* msgf_eg4seg.cpp */; };
+		FBF62F2B1D9DC6AF0026D3C2 /* SineWave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB7679FB1D8D73C600C2593B /* SineWave.cpp */; };
+		FBF62F2D1D9DC6AF0026D3C2 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD96F271D8567CD006AE339 /* CoreFoundation.framework */; };
+		FBF62F2E1D9DC6AF0026D3C2 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD96F251D8567BB006AE339 /* CoreMIDI.framework */; };
+		FBF62F2F1D9DC6AF0026D3C2 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD96F231D8567AB006AE339 /* CoreAudio.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		FBD96E3B1D855BF3006AE339 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		FBF62F301D9DC6AF0026D3C2 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -183,6 +224,7 @@
 		FBD96F231D8567AB006AE339 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		FBD96F251D8567BB006AE339 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		FBD96F271D8567CD006AE339 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		FBF62F341D9DC6AF0026D3C2 /* ssdev_msgf_mf */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ssdev_msgf_mf; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +235,16 @@
 				FBD96F281D8567CD006AE339 /* CoreFoundation.framework in Frameworks */,
 				FBD96F261D8567BB006AE339 /* CoreMIDI.framework in Frameworks */,
 				FBD96F241D8567AB006AE339 /* CoreAudio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBF62F2C1D9DC6AF0026D3C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBF62F2D1D9DC6AF0026D3C2 /* CoreFoundation.framework in Frameworks */,
+				FBF62F2E1D9DC6AF0026D3C2 /* CoreMIDI.framework in Frameworks */,
+				FBF62F2F1D9DC6AF0026D3C2 /* CoreAudio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				FBD96E3D1D855BF3006AE339 /* ssdevenv */,
+				FBF62F341D9DC6AF0026D3C2 /* ssdev_msgf_mf */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -393,6 +446,23 @@
 			productReference = FBD96E3D1D855BF3006AE339 /* ssdevenv */;
 			productType = "com.apple.product-type.tool";
 		};
+		FBF62EFC1D9DC6AF0026D3C2 /* ssdev_msgf_mf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBF62F311D9DC6AF0026D3C2 /* Build configuration list for PBXNativeTarget "ssdev_msgf_mf" */;
+			buildPhases = (
+				FBF62EFD1D9DC6AF0026D3C2 /* Sources */,
+				FBF62F2C1D9DC6AF0026D3C2 /* Frameworks */,
+				FBF62F301D9DC6AF0026D3C2 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ssdev_msgf_mf;
+			productName = ssdevenv;
+			productReference = FBF62F341D9DC6AF0026D3C2 /* ssdev_msgf_mf */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -420,6 +490,7 @@
 			projectRoot = "";
 			targets = (
 				FBD96E3C1D855BF3006AE339 /* ssdevenv */,
+				FBF62EFC1D9DC6AF0026D3C2 /* ssdev_msgf_mf */,
 			);
 		};
 /* End PBXProject section */
@@ -433,22 +504,11 @@
 				FB7679FE1D8D749200C2593B /* OnePole.cpp in Sources */,
 				FBA13ADD1D8CCEB7000A28F7 /* FileWvIn.cpp in Sources */,
 				FBA13ADE1D8CCEB7000A28F7 /* FileWvOut.cpp in Sources */,
-				FBD96E7F1D855D21006AE339 /* msgf_eg2seg.cpp in Sources */,
-				FBD96EAA1D855D50006AE339 /* mf_voice_context.cpp in Sources */,
-				FBD96E811D855D21006AE339 /* msgf_event_info.cpp in Sources */,
-				FBD96E821D855D21006AE339 /* msgf_instrument_for_check.cpp in Sources */,
 				FB7679F31D8D719400C2593B /* DelayA.cpp in Sources */,
-				FBD96EAB1D855D50006AE339 /* mf_note.cpp in Sources */,
-				FBD96E851D855D21006AE339 /* msgf_lfo.cpp in Sources */,
-				FBD96E881D855D21006AE339 /* msgf_voice_context.cpp in Sources */,
 				FBA13AF71D8CCEB7000A28F7 /* RtAudio.cpp in Sources */,
 				FBA13AEA1D8CCEB7000A28F7 /* Messager.cpp in Sources */,
 				FBD96E7E1D855D21006AE339 /* msgf_eg.cpp in Sources */,
 				FBA13B0A1D8CCEB7000A28F7 /* Voicer.cpp in Sources */,
-				FBD96EAC1D855D50006AE339 /* msgf_configuration.cpp in Sources */,
-				FBD96E871D855D21006AE339 /* msgf_part.cpp in Sources */,
-				FBD96E841D855D21006AE339 /* msgf_level_check.cpp in Sources */,
-				FBD96E861D855D21006AE339 /* msgf_note.cpp in Sources */,
 				FBA13B001D8CCEB7000A28F7 /* Sphere.cpp in Sources */,
 				FBD96E7D1D855D21006AE339 /* msgf_audio_buffer.cpp in Sources */,
 				FBA13AF81D8CCEB7000A28F7 /* RtMidi.cpp in Sources */,
@@ -456,10 +516,7 @@
 				FB7679F21D8D719400C2593B /* Delay.cpp in Sources */,
 				FBC663D31D8F4EE100224316 /* ssdevenv_main.cpp in Sources */,
 				FBA13AFE1D8CCEB7000A28F7 /* Skini.cpp in Sources */,
-				FBD96E831D855D21006AE339 /* msgf_instrument.cpp in Sources */,
-				FBD96E9C1D855D39006AE339 /* msgf_osc_pipe.cpp in Sources */,
 				FB7679F81D8D731E00C2593B /* Modulate.cpp in Sources */,
-				FBD96E9D1D855D39006AE339 /* msgf_amp_pipe.cpp in Sources */,
 				FBA13ADB1D8CCEB7000A28F7 /* FileRead.cpp in Sources */,
 				FB7679F41D8D719400C2593B /* DelayL.cpp in Sources */,
 				FBA13ADA1D8CCEB7000A28F7 /* FileLoop.cpp in Sources */,
@@ -467,14 +524,64 @@
 				FBA13B041D8CCEB7000A28F7 /* TcpServer.cpp in Sources */,
 				FB7679FA1D8D736400C2593B /* Noise.cpp in Sources */,
 				FBA13AE81D8CCEB7000A28F7 /* JCRev.cpp in Sources */,
-				FBD96E7C1D855D21006AE339 /* msgf_if.cpp in Sources */,
 				FB7679F61D8D71D700C2593B /* Envelope.cpp in Sources */,
 				FBA13ADF1D8CCEB7000A28F7 /* Fir.cpp in Sources */,
 				FBA13B011D8CCEB7000A28F7 /* Stk.cpp in Sources */,
 				FBA13B051D8CCEB7000A28F7 /* Thread.cpp in Sources */,
-				FBD96EA91D855D50006AE339 /* mf_instrument.cpp in Sources */,
-				FBD96E801D855D21006AE339 /* msgf_eg4seg.cpp in Sources */,
 				FB7679FC1D8D73C600C2593B /* SineWave.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBF62EFD1D9DC6AF0026D3C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBF62EFE1D9DC6AF0026D3C2 /* Socket.cpp in Sources */,
+				FBF62EFF1D9DC6AF0026D3C2 /* OnePole.cpp in Sources */,
+				FBF62F001D9DC6AF0026D3C2 /* FileWvIn.cpp in Sources */,
+				FBF62F011D9DC6AF0026D3C2 /* FileWvOut.cpp in Sources */,
+				FBF62F021D9DC6AF0026D3C2 /* msgf_eg2seg.cpp in Sources */,
+				FBF62F031D9DC6AF0026D3C2 /* mf_voice_context.cpp in Sources */,
+				FBF62F041D9DC6AF0026D3C2 /* msgf_event_info.cpp in Sources */,
+				FBF62F051D9DC6AF0026D3C2 /* msgf_instrument_for_check.cpp in Sources */,
+				FBF62F061D9DC6AF0026D3C2 /* DelayA.cpp in Sources */,
+				FBF62F071D9DC6AF0026D3C2 /* mf_note.cpp in Sources */,
+				FBF62F081D9DC6AF0026D3C2 /* msgf_lfo.cpp in Sources */,
+				FBF62F091D9DC6AF0026D3C2 /* msgf_voice_context.cpp in Sources */,
+				FBF62F0A1D9DC6AF0026D3C2 /* RtAudio.cpp in Sources */,
+				FBF62F0B1D9DC6AF0026D3C2 /* Messager.cpp in Sources */,
+				FBF62F0C1D9DC6AF0026D3C2 /* msgf_eg.cpp in Sources */,
+				FBF62F0D1D9DC6AF0026D3C2 /* Voicer.cpp in Sources */,
+				FBF62F0E1D9DC6AF0026D3C2 /* msgf_configuration.cpp in Sources */,
+				FBF62F0F1D9DC6AF0026D3C2 /* msgf_part.cpp in Sources */,
+				FBF62F101D9DC6AF0026D3C2 /* msgf_level_check.cpp in Sources */,
+				FBF62F111D9DC6AF0026D3C2 /* msgf_note.cpp in Sources */,
+				FBF62F121D9DC6AF0026D3C2 /* Sphere.cpp in Sources */,
+				FBF62F131D9DC6AF0026D3C2 /* msgf_audio_buffer.cpp in Sources */,
+				FBF62F141D9DC6AF0026D3C2 /* RtMidi.cpp in Sources */,
+				FBF62F151D9DC6AF0026D3C2 /* FileWrite.cpp in Sources */,
+				FBF62F161D9DC6AF0026D3C2 /* Delay.cpp in Sources */,
+				FBF62F171D9DC6AF0026D3C2 /* ssdevenv_main.cpp in Sources */,
+				FBF62F181D9DC6AF0026D3C2 /* Skini.cpp in Sources */,
+				FBF62F191D9DC6AF0026D3C2 /* msgf_instrument.cpp in Sources */,
+				FBF62F1A1D9DC6AF0026D3C2 /* msgf_osc_pipe.cpp in Sources */,
+				FBF62F1B1D9DC6AF0026D3C2 /* Modulate.cpp in Sources */,
+				FBF62F1C1D9DC6AF0026D3C2 /* msgf_amp_pipe.cpp in Sources */,
+				FBF62F1D1D9DC6AF0026D3C2 /* FileRead.cpp in Sources */,
+				FBF62F1E1D9DC6AF0026D3C2 /* DelayL.cpp in Sources */,
+				FBF62F1F1D9DC6AF0026D3C2 /* FileLoop.cpp in Sources */,
+				FBF62F201D9DC6AF0026D3C2 /* Mutex.cpp in Sources */,
+				FBF62F211D9DC6AF0026D3C2 /* TcpServer.cpp in Sources */,
+				FBF62F221D9DC6AF0026D3C2 /* Noise.cpp in Sources */,
+				FBF62F231D9DC6AF0026D3C2 /* JCRev.cpp in Sources */,
+				FBF62F241D9DC6AF0026D3C2 /* msgf_if.cpp in Sources */,
+				FBF62F251D9DC6AF0026D3C2 /* Envelope.cpp in Sources */,
+				FBF62F261D9DC6AF0026D3C2 /* Fir.cpp in Sources */,
+				FBF62F271D9DC6AF0026D3C2 /* Stk.cpp in Sources */,
+				FBF62F281D9DC6AF0026D3C2 /* Thread.cpp in Sources */,
+				FBF62F291D9DC6AF0026D3C2 /* mf_instrument.cpp in Sources */,
+				FBF62F2A1D9DC6AF0026D3C2 /* msgf_eg4seg.cpp in Sources */,
+				FBF62F2B1D9DC6AF0026D3C2 /* SineWave.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +692,32 @@
 			};
 			name = Release;
 		};
+		FBF62F321D9DC6AF0026D3C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__MACOSX_CORE__,
+					__LITTLE_ENDIAN__,
+					_STK_DEBUG_,
+					_MSGF_MF_,
+				);
+				"INFOPLIST_FILE[sdk=*]" = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FBF62F331D9DC6AF0026D3C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__MACOSX_CORE__,
+					__LITTLE_ENDIAN__,
+					_MSGF_MF_,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -602,6 +735,15 @@
 			buildConfigurations = (
 				FBD96E451D855BF3006AE339 /* Debug */,
 				FBD96E461D855BF3006AE339 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBF62F311D9DC6AF0026D3C2 /* Build configuration list for PBXNativeTarget "ssdev_msgf_mf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBF62F321D9DC6AF0026D3C2 /* Debug */,
+				FBF62F331D9DC6AF0026D3C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

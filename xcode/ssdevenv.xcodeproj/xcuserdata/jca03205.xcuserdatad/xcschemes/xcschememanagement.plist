@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ssdev_msgf_mf.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>ssdevenv.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>FBD96E3C1D855BF3006AE339</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FBF62EFC1D9DC6AF0026D3C2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

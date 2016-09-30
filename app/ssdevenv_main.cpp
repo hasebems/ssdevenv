@@ -14,8 +14,10 @@
 #include "Messager.h"
 
 //	for MSGF
-#include "msgf_if.h"				//	added by M.H
-#include "msgf_audio_buffer.h"		//	added by M.H
+#ifdef _MSGF_MF_
+	#include "msgf_if.h"				//	added by M.H
+	#include "msgf_audio_buffer.h"		//	added by M.H
+#endif
 
 #if defined(__STK_REALTIME__)
   #include "Mutex.h"
@@ -40,7 +42,9 @@ using namespace stk;
 struct TickData {
 	WvOut **wvout;
 //	Instrmnt **instrument;
+#ifdef _MSGF_MF_
 	msgf::Msgf *msgf;		//	added by M.H
+#endif
 //	Voicer *voicer;
 	JCRev reverb;
 	Messager messager;
@@ -264,12 +268,14 @@ bool parseArgs(int nArgs, char *args[], WvOut **output, Messager& messager)
 //-------------------------------------------------------------------------------
 void processMessage_msgf( TickData* data )
 {
-	UInt8 value1 = static_cast<UInt8>(data->message.floatValues[0]);
-	UInt8 value2 = static_cast<UInt8>(data->message.floatValues[1]);
+	unsigned char value1 = static_cast<unsigned char>(data->message.floatValues[0]);
+	unsigned char value2 = static_cast<unsigned char>(data->message.floatValues[1]);
 
-	UInt8	msg[3];
+#ifdef _MSGF_MF_
+	unsigned char	msg[3];
 	msgf::Msgf*	tg = static_cast<msgf::Msgf*>(data->msgf);
 	if ( tg == NULL ) return;
+#endif
 
 	// If only one instrument, allow messages from all channels to control it.
 	//int group = 1;
@@ -277,6 +283,7 @@ void processMessage_msgf( TickData* data )
 
 	switch( data->message.type ) {
 
+#ifdef _MSGF_MF_
 		case __SK_Exit_:
 			if ( data->settling == false ) goto settle;
 			done = true;
@@ -315,7 +322,7 @@ void processMessage_msgf( TickData* data )
 //			break;
 
 		case __SK_Volume_:
-			msg[2] = static_cast<UInt8>(value1 * ONE_OVER_128);
+			msg[2] = static_cast<unsigned char>(value1 * ONE_OVER_128);
 			msg[0] = 0xb0; msg[1] = 0x07;
 			tg->sendMessage( 3, msg );
 			break;
@@ -324,7 +331,9 @@ void processMessage_msgf( TickData* data )
 			msg[0] = 0xc0; msg[1] = value1; msg[2] = 0;
 			tg->sendMessage( 2, msg );
 			break;
-
+#endif
+		default: break;
+			
 	} // end of switch
 
 	data->haveMessage = false;
@@ -348,11 +357,13 @@ int tick_msgf(	void *outputBuffer, void *inputBuffer,
 	int counter;
 	int nTicks = (int) nBufferFrames;
 
+#ifdef _MSGF_MF_
 	//	make a MSGF Audio Buffer instance
 	msgf::TgAudioBuffer	abuf;
 	msgf::Msgf*	tg = static_cast<msgf::Msgf*>(data->msgf);
 	if ( tg == NULL ){ return -1; }
-
+#endif
+	
 	while ( nTicks > 0 && !done ) {
 
 		//	to decide sample counts before next message shoude be executed
@@ -372,6 +383,7 @@ int tick_msgf(	void *outputBuffer, void *inputBuffer,
 
 		if ( counter > 0 ){
 			//	MSGF generate Audio
+#ifdef _MSGF_MF_
 			abuf.obtainAudioBuffer(counter);			//	MSGF IF
 			tg->process( abuf );						//	MSGF IF
 
@@ -392,7 +404,7 @@ int tick_msgf(	void *outputBuffer, void *inputBuffer,
 			}
 			//	Release AudioBuffer
 			abuf.releaseAudioBuffer();
-
+#endif
 			if ( nTicks == 0 ) break;
 		}
 
@@ -427,10 +439,12 @@ int init( int argc, char *argv[], TickData& data )
 	data.wvout = (WvOut **) calloc( data.nWvOuts, sizeof(WvOut *) );
 
 	//	Create MSGF
+#ifdef _MSGF_MF_
 	data.msgf = new msgf::Msgf;						//	added by M.H
-	UInt8 msg[3] = { 0xc0, 0, 0 };					//	added by M.H
+	unsigned char msg[3] = { 0xc0, 0, 0 };			//	added by M.H
 	msg[1] = 0;										//	added by M.H
 	data.msgf->sendMessage( 2, msg );				//	added by M.H
+#endif
 
 	return 0;
 }
@@ -530,10 +544,12 @@ int main( int argc, char *argv[] )
 #endif
 
 cleanup:
+#ifdef _MSGF_MF_
 	if ( data.msgf ){			//	added by M.H
 		delete data.msgf;		//	added by M.H
 	}
-
+#endif
+	
 	for ( int i=0; i<(int)data.nWvOuts; i++ ) delete data.wvout[i];
 	free( data.wvout );
 
