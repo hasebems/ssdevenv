@@ -14,15 +14,17 @@ OTHER_SRC_PATH3 = ../Musical_Sound_Generator_Framework/magic_flute
 STK_SRC_PATH = ../stk
 APP_SRC_PATH = ../app
 
-### add user app
+### mix user app
 vpath %.cpp $(STK_SRC_PATH):$(APP_SRC_PATH):$(OTHER_SRC_PATH1):$(OTHER_SRC_PATH2):$(OTHER_SRC_PATH3)
+###
 
 OBJECT_PATH = Release
 vpath %.o $(OBJECT_PATH)
 
-### add user app
+### mix user app
 INCLUDE_PATH = ../stk_include:$(APP_SRC_PATH):$(OTHER_SRC_PATH1):$(OTHER_SRC_PATH2):$(OTHER_SRC_PATH3)
 vpath %.h $(INCLUDE_PATH)
+###
 
 OBJECTS = Stk.o Noise.o Envelope.o \
 	Modulate.o SineWave.o FileRead.o FileWrite.o \
@@ -32,15 +34,14 @@ OBJECTS = Stk.o Noise.o Envelope.o \
 	JCRev.o \
 	Voicer.o Sphere.o \
 	Messager.o Skini.o utilities.o \
-	RtMidi.o RtAudio.o Thread.o Mutex.o Socket.o TcpServer.o
+	RtMidi.o RtAudio.o Thread.o Mutex.o Socket.o TcpServer.o ssdevenv_main.o
 
 ### add user app from here
 OTHER_OBJECTS = mf_instrument.o mf_voice_context.o mf_note.o msgf_configuration.o \
 	msgf_osc_pipe.o msgf_amp_pipe.o \
 	msgf_if.o msgf_audio_buffer.o msgf_eg.o msgf_eg2seg.o msgf_eg4seg.o \
 	msgf_event_info.o msgf_instrument_for_check.o msgf_instrument.o \
-	msgf_level_check.o msgf_lfo.o msgf_note.o msgf_part.o msgf_voice_context.o \
-	ssdevenv_main.o
+	msgf_level_check.o msgf_lfo.o msgf_note.o msgf_part.o msgf_voice_context.o
 ### to here
 
 CC       = g++
@@ -65,6 +66,8 @@ ssdev_msgf_mf: $(OBJECTS) $(OTHER_OBJECTS)
 ### to here
 
 %.o : %.cpp $(OBJECT_PATH)/.placeholder
+		echo "--------"
+		echo "compiling $% ..."
 		$(CC) $(CFLAGS) $(DEFS) -c $(<) -o $(OBJECT_PATH)/$@
 
 $(OBJECT_PATH)/.placeholder:
