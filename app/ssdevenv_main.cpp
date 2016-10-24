@@ -463,22 +463,6 @@ int init( int argc, char *argv[], TickData& data )
 }
 
 //-------------------------------------------------------------------------------
-//				quit
-//-------------------------------------------------------------------------------
-void quit( void )
-{
-	#if defined(__RASP_APP__)
-		RASP_quit();
-	#endif
-
-	#ifdef _MSGF_MF_
-		if ( data.msgf ){			//	added by M.H
-			delete data.msgf;		//	added by M.H
-		}
-	#endif
-}
-
-//-------------------------------------------------------------------------------
 //				main
 //-------------------------------------------------------------------------------
 int main( int argc, char *argv[] )
@@ -573,7 +557,15 @@ int main( int argc, char *argv[] )
 #endif
 
 cleanup:
-	quit();
+#if defined(__RASP_APP__)
+	RASP_quit();
+#endif
+
+#ifdef _MSGF_MF_
+	if ( data.msgf ){			//	added by M.H
+		delete data.msgf;		//	added by M.H
+	}
+#endif
 
 	for ( int i=0; i<(int)data.nWvOuts; i++ ) delete data.wvout[i];
 	free( data.wvout );
