@@ -6,8 +6,6 @@
 //  Copyright (c) 2014年 長谷部 雅彦. All rights reserved.
 //
 
-#include	"raspi.h"
-#ifdef RASPI
 
 #include <stdio.h>
 #include <stdlib.h>

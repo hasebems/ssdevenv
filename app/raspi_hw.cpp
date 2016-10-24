@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Masahiko Hasebe. All rights reserved.
 //
 
-#include	"raspi.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,20 +14,15 @@
 #include <errno.h>
 #include <getopt.h>
 #include <fcntl.h>
+#include <linux/i2c-dev.h>
 
-#ifdef RASPI
- #include <linux/i2c-dev.h>
-#endif
 
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <math.h>
 
-#ifdef RASPI
- #define 	I2CSLAVE_	I2C_SLAVE
-#else
- #define	I2CSLAVE_	0
-#endif
+#define 	I2CSLAVE_	I2C_SLAVE
+
 
 //-------------------------------------------------------------------------
 //			Variables
