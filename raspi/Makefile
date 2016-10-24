@@ -34,7 +34,8 @@ OBJECTS = Stk.o Noise.o Envelope.o \
 	JCRev.o \
 	Voicer.o Sphere.o \
 	Messager.o Skini.o utilities.o \
-	RtMidi.o RtAudio.o Thread.o Mutex.o Socket.o TcpServer.o
+	RtMidi.o RtAudio.o Thread.o Mutex.o Socket.o TcpServer.o \
+	ssdevenv_main.o
 
 
 ### add user app from here
@@ -43,7 +44,6 @@ OTHER_OBJECTS = mf_instrument.o mf_voice_context.o mf_note.o msgf_configuration.
 	msgf_if.o msgf_audio_buffer.o msgf_eg.o msgf_eg2seg.o msgf_eg4seg.o \
 	msgf_event_info.o msgf_instrument_for_check.o msgf_instrument.o \
 	msgf_level_check.o msgf_lfo.o msgf_note.o msgf_part.o msgf_voice_context.o \
-	ssdevenv_main.o \
 	raspi_hw.o raspi_magicflute.o
 ### to here
 
