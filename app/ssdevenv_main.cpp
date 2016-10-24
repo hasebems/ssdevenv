@@ -23,6 +23,11 @@
   #include "Mutex.h"
 #endif
 
+#if defined(__RASP_APP__)
+	#include	"raspi_magicflute.h"
+	#include	"raspi_hw.h"
+#endif
+
 #include <cstring>
 #include <signal.h>
 #include <iostream>
