@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\stk">
+      <UniqueIdentifier>{554663e7-67a2-4adb-8bd9-7cef0c012433}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\msgf">
+      <UniqueIdentifier>{3b85b7c5-f652-4536-a14b-5b69e235cabe}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\app\ssdevenv_main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\ADSR.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\BiQuad.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\Delay.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\DelayA.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\DelayL.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\Envelope.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\FileLoop.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\FileRead.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\FileWrite.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\FileWvIn.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\FileWvOut.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\Fir.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\FormSwep.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\JCRev.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\Messager.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\Modulate.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\Mutex.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\Noise.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\OnePole.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\OneZero.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\PoleZero.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\RtAudio.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\RtMidi.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\SineWave.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\SingWave.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\Skini.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\Socket.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\Sphere.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\Stk.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\TcpServer.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\Thread.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\Twang.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\TwoZero.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stk\Voicer.cpp">
+      <Filter>ソース ファイル\stk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\msgf_general\msgf_audio_buffer.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\msgf_general\msgf_eg.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\msgf_general\msgf_eg2seg.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\msgf_general\msgf_eg4seg.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\msgf_general\msgf_event_info.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\msgf_general\msgf_if.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\msgf_general\msgf_instrument.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\msgf_general\msgf_instrument_for_check.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\msgf_general\msgf_level_check.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\msgf_general\msgf_lfo.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\msgf_general\msgf_note.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\msgf_general\msgf_part.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\msgf_general\msgf_voice_context.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\audio_engine\msgf_amp_pipe.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\audio_engine\msgf_osc_pipe.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\magic_flute\mf_instrument.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\magic_flute\mf_note.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\magic_flute\mf_voice_context.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Musical_Sound_Generator_Framework\magic_flute\msgf_configuration.cpp">
+      <Filter>ソース ファイル\msgf</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

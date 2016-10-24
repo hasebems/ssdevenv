@@ -34,7 +34,7 @@ OBJECTS = Stk.o Noise.o Envelope.o \
 	JCRev.o \
 	Voicer.o Sphere.o \
 	Messager.o Skini.o utilities.o \
-	RtMidi.o RtAudio.o Thread.o Mutex.o Socket.o TcpServer.o ssdevenv_main.o
+	RtMidi.o RtAudio.o Thread.o Mutex.o Socket.o TcpServer.o
 
 
 ### add user app from here
@@ -42,7 +42,9 @@ OTHER_OBJECTS = mf_instrument.o mf_voice_context.o mf_note.o msgf_configuration.
 	msgf_osc_pipe.o msgf_amp_pipe.o \
 	msgf_if.o msgf_audio_buffer.o msgf_eg.o msgf_eg2seg.o msgf_eg4seg.o \
 	msgf_event_info.o msgf_instrument_for_check.o msgf_instrument.o \
-	msgf_level_check.o msgf_lfo.o msgf_note.o msgf_part.o msgf_voice_context.o
+	msgf_level_check.o msgf_lfo.o msgf_note.o msgf_part.o msgf_voice_context.o \
+	ssdevenv_main.o \
+	raspi_hw.o raspi_magicflute.o
 ### to here
 
 CC       = g++
@@ -52,7 +54,7 @@ CFLAGS  += -I../stk_include -I$(APP_SRC_PATH)
 LIBRARY = -lpthread -lasound -lm
 
 ### add user app from here
-DEFS_OTHER   = $(DEFS) -D_MSGF_MF_
+DEFS_OTHER   = $(DEFS) -D_MSGF_MF_  -D__RASP_APP__
 CFLAGS_OTHER = $(CFLAGS) -I$(OTHER_SRC_PATH1) -I$(OTHER_SRC_PATH2) -I$(OTHER_SRC_PATH3)
 ### to here
 

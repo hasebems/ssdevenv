@@ -74,7 +74,7 @@ struct TickData {
 
 //-------------------------------------------------------------------------------
 void usage(char *function) {
-	
+
 	printf("\nuseage: %s flag(s) \n", function);
 	printf("        where flag = -s RATE to specify a sample rate,\n");
 	printf("        -n NUMBER specifies the number of voices to allocate,\n");
@@ -100,9 +100,9 @@ int checkArgs(int nArgs, char *args[])
 	int nWvOuts = 0;
 	char flags[2][50] = {""};
 	bool realtime = false;
-	
+
 	if (nArgs < 3 || nArgs > 22) usage(args[0]);
-	
+
 	while (i < nArgs) {
 		if (args[i][0] == '-') {
 			if (args[i][1] == 'o') {
@@ -130,7 +130,7 @@ int checkArgs(int nArgs, char *args[])
 		}
 		i++;
 	}
-	
+
 	// Check for multiple flags of the same type
 	for ( i=0; i<=j; i++ ) {
 		w = i+1;
@@ -142,10 +142,10 @@ int checkArgs(int nArgs, char *args[])
 			w++;
 		}
 	}
-	
+
 	// Make sure we have at least one output type
 	if ( nWvOuts < 1 && !realtime ) usage(args[0]);
-	
+
 	return nWvOuts;
 }
 //-------------------------------------------------------------------------------
@@ -154,17 +154,17 @@ bool parseArgs(int nArgs, char *args[], WvOut **output, Messager& messager)
 	int i = 1, j = 0, nWvIns = 0;
 	bool realtime = false;
 	char fileName[256];
-	
+
 	while (i < nArgs) {
 		if ( (args[i][0] == '-') && (args[i][1] == 'i') ) {
 			switch(args[i][2]) {
-					
+
 				case 'f':
 					strcpy(fileName,args[++i]);
 					if ( !messager.setScoreFile( fileName ) ) exit(0);
 					nWvIns++;
 					break;
-					
+
 				case 'p':
 #if defined(__STK_REALTIME__)
 					if ( !messager.startStdInput() ) exit(0);
@@ -173,7 +173,7 @@ bool parseArgs(int nArgs, char *args[], WvOut **output, Messager& messager)
 #else
 					usage(args[0]);
 #endif
-					
+
 				case 'm':
 #if defined(__STK_REALTIME__)
 					// Check for an optional MIDI port argument.
@@ -187,7 +187,7 @@ bool parseArgs(int nArgs, char *args[], WvOut **output, Messager& messager)
 #else
 					usage(args[0]);
 #endif
-					
+
 				default:
 					usage(args[0]);
 					break;
@@ -195,7 +195,7 @@ bool parseArgs(int nArgs, char *args[], WvOut **output, Messager& messager)
 		}
 		else if ( (args[i][0] == '-') && (args[i][1] == 'o') ) {
 			switch(args[i][2]) {
-					
+
 				case 'r':
 #if defined(__STK_REALTIME__)
 					realtime = true;
@@ -203,7 +203,7 @@ bool parseArgs(int nArgs, char *args[], WvOut **output, Messager& messager)
 #else
 					usage(args[0]);
 #endif
-					
+
 				case 'w':
 					if ((i+1 < nArgs) && args[i+1][0] != '-') {
 						i++;
@@ -213,7 +213,7 @@ bool parseArgs(int nArgs, char *args[], WvOut **output, Messager& messager)
 					output[j] = new FileWvOut(fileName, 1, FileWrite::FILE_WAV );
 					j++;
 					break;
-					
+
 				case 's':
 					if ((i+1 < nArgs) && args[i+1][0] != '-') {
 						i++;
@@ -223,7 +223,7 @@ bool parseArgs(int nArgs, char *args[], WvOut **output, Messager& messager)
 					output[j] = new FileWvOut(fileName,1, FileWrite::FILE_SND);
 					j++;
 					break;
-					
+
 				case 'm':
 					if ((i+1 < nArgs) && args[i+1][0] != '-') {
 						i++;
@@ -233,7 +233,7 @@ bool parseArgs(int nArgs, char *args[], WvOut **output, Messager& messager)
 					output[j] = new FileWvOut(fileName,1, FileWrite::FILE_MAT);
 					j++;
 					break;
-					
+
 				case 'a':
 					if ((i+1 < nArgs) && args[i+1][0] != '-') {
 						i++;
@@ -243,7 +243,7 @@ bool parseArgs(int nArgs, char *args[], WvOut **output, Messager& messager)
 					output[j] = new FileWvOut(fileName,1, FileWrite::FILE_AIF );
 					j++;
 					break;
-					
+
 				default:
 					usage(args[0]);
 					break;
@@ -251,7 +251,7 @@ bool parseArgs(int nArgs, char *args[], WvOut **output, Messager& messager)
 		}
 		i++;
 	}
-	
+
 	if ( nWvIns == 0 ) {
 #if defined(__STK_REALTIME__)
 		if ( !messager.startStdInput() ) exit(0);
@@ -260,7 +260,7 @@ bool parseArgs(int nArgs, char *args[], WvOut **output, Messager& messager)
 		usage(args[0]);
 #endif
 	}
-	
+
 	return realtime;
 }
 //-------------------------------------------------------------------------------
@@ -333,7 +333,7 @@ void processMessage_msgf( TickData* data )
 			break;
 #endif
 		default: break;
-			
+
 	} // end of switch
 
 	data->haveMessage = false;
@@ -363,7 +363,7 @@ int tick_msgf(	void *outputBuffer, void *inputBuffer,
 	msgf::Msgf*	tg = static_cast<msgf::Msgf*>(data->msgf);
 	if ( tg == NULL ){ return -1; }
 #endif
-	
+
 	while ( nTicks > 0 && !done ) {
 
 		//	to decide sample counts before next message shoude be executed
@@ -412,6 +412,10 @@ int tick_msgf(	void *outputBuffer, void *inputBuffer,
 		if ( data->haveMessage ) processMessage_msgf( data );
 	}
 
+#if defined(__RASP_APP__)
+	RASP_eventLoop();
+#endif
+
 	return 0;
 }
 
@@ -446,7 +450,27 @@ int init( int argc, char *argv[], TickData& data )
 	data.msgf->sendMessage( 2, msg );				//	added by M.H
 #endif
 
+#if defined(__RASP_APP__)
+	RASP_init();
+#endif
+
 	return 0;
+}
+
+//-------------------------------------------------------------------------------
+//				quit
+//-------------------------------------------------------------------------------
+void quit( void )
+{
+	#if defined(__RASP_APP__)
+		RASP_quit();
+	#endif
+
+	#ifdef _MSGF_MF_
+		if ( data.msgf ){			//	added by M.H
+			delete data.msgf;		//	added by M.H
+		}
+	#endif
 }
 
 //-------------------------------------------------------------------------------
@@ -544,12 +568,8 @@ int main( int argc, char *argv[] )
 #endif
 
 cleanup:
-#ifdef _MSGF_MF_
-	if ( data.msgf ){			//	added by M.H
-		delete data.msgf;		//	added by M.H
-	}
-#endif
-	
+	quit();
+
 	for ( int i=0; i<(int)data.nWvOuts; i++ ) delete data.wvout[i];
 	free( data.wvout );
 
