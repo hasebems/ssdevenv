@@ -1,5 +1,5 @@
 //
-//  raspi_hw.c
+//  raspi_hw.cpp
 //  ToneGenerator
 //
 //  Created by Masahiko Hasebe on 2013/08/13.
@@ -55,10 +55,10 @@ static unsigned char ACCEL_SENSOR_ADDRESS = 0x1d;
 void initI2c( void )
 {
     const char	*fileName = "/dev/i2c-1"; // I2C Drive File name
-	
+
 	//	Pressure Sensor
     printf("***** start i2c *****\n");
-	
+
     // Open I2C port with Read/Write Attribute
     if ((i2cDscript = open(fileName, O_RDWR)) < 0){
         printf("Faild to open i2c port\n");
@@ -69,7 +69,7 @@ void initI2c( void )
 void quitI2c( void )
 {
      printf("***** quit i2c *****\n");
-	
+
     // Open I2C port with Read/Write Attribute
     if ( close(i2cDscript) < 0){
         printf("Faild to close i2c port\n");
@@ -80,11 +80,11 @@ void quitI2c( void )
 void writeI2c( unsigned char adrs, unsigned char data )
 {
 	unsigned char buf[2];
-	
+
 	// Commands for performing a ranging
 	buf[0] = adrs;
 	buf[1] = data;
-	
+
 	if ((write(i2cDscript, buf, 2)) != 2) {
 		// Write commands to the i2c port
 		printf("Error writing to i2c slave(I2C)\n");
@@ -96,21 +96,21 @@ unsigned char readI2c( unsigned char adrs )
 {
 	unsigned char buf[2];
 	buf[0] = adrs;						// This is the register we wish to read from
-	
+
 	if (write(i2cDscript, buf, 1) != 1) {
 		// Send the register to read from
 		printf("Error writing to i2c slave(I2C:read)\n");
 		//exit(1);
 		return 0;
 	}
-	
+
 	if (read(i2cDscript, buf, 1) != 1) {
 		// Read back data into buf[]
 		printf("Unable to read from slave(I2C)\n");
 		//exit(1);
 		return 0;
 	}
-	
+
 	return buf[0];
 }
 
@@ -141,7 +141,7 @@ void initSX1509( void )
 {
 	//	Start Access
 	accessSX1509();
-	
+
 	//	Init Parameter
 	writeI2c( GPIO_EXPNDR_PULL_UP_B, 0xFF );
 	writeI2c( GPIO_EXPNDR_PULL_UP_A, 0xFF );
@@ -152,10 +152,10 @@ void initSX1509( void )
 unsigned short getSwData( void )
 {
 	unsigned short dt;
-			
+
 	//	Start Access
 	accessSX1509();
-	
+
 	//	GPIO
 	dt = readI2c( GPIO_EXPNDR_DATA_B ) << 8;
 	dt |= readI2c( GPIO_EXPNDR_DATA_A );
@@ -181,7 +181,7 @@ unsigned short getSwData( void )
 void accessLPS331AP( void )
 {
 	int		address = PRESSURE_SENSOR_ADDRESS;  // I2C
-	
+
 	// Set Address
 	if (ioctl(i2cDscript, I2CSLAVE_, address) < 0){
 		printf("Unable to get bus access to talk to slave(PRS)\n");
@@ -193,7 +193,7 @@ void initLPS331AP( void )
 {
 	//	Start Access
 	accessLPS331AP();
-	
+
 	//	Init Parameter
 	writeI2c( PRES_SNCR_PWRON, 0x80 );	//	Power On
 	writeI2c( PRES_SNCR_RESOLUTION, 0x7A );	//	Resolution
@@ -203,10 +203,10 @@ int getPressure( void )
 {
 	unsigned char rdDt, dt[3];
 	float	fdata = 0;	//	can not get a value
-	
+
 	//	Start Access
 	accessLPS331AP();
-	
+
 	//	Pressure Sencer
 	writeI2c( PRES_SNCR_START, PRES_SNCR_ONE_SHOT );	//	Start One shot
 	rdDt = readI2c( PRES_SNCR_RCV_DT_FLG );
@@ -217,9 +217,9 @@ int getPressure( void )
 		fdata = (dt[2]<<16)|(dt[1]<<8)|dt[0];
 		fdata = fdata*10/4096;
 	}
-	
+
 	return (int)roundf(fdata);	//	10 times of Pressure(hPa)
-	
+
 	//	Temperature
 #if 0
 	if ( rdDt & PRES_SNCR_RCV_TMPR ){
@@ -266,14 +266,14 @@ void accessMPR121( void )
 void initMPR121( void )
 {
 	int	i, j;
-	
+
 	//	Start Access
 	accessMPR121();
-	
+
 	//	Init Parameter
 	// Put the MPR into setup mode
     writeI2c(TCH_SNCR_ELE_CFG,0x00);
-    
+
     // Electrode filters for when data is > baseline
     unsigned char gtBaseline[] = {
 		0x01,  //MHD_R
@@ -282,7 +282,7 @@ void initMPR121( void )
 		0x00   //FDL_R
 	};
 	for ( i=0; i<4; i++ ) writeI2c(TCH_SNCR_MHD_R+i,gtBaseline[i]);
-	
+
 	// Electrode filters for when data is < baseline
 	unsigned char ltBaseline[] = {
         0x01,   //MHD_F
@@ -297,13 +297,13 @@ void initMPR121( void )
         E_THR_T, // Touch Threshhold
         E_THR_R  // Release Threshold
 	};
-	
+
     for( j=0; j<12; j++ ){
 		for ( i=0; i<2; i++ ){
         	writeI2c(TCH_SNCR_ELE0_T+(j*2)+i,electrodeThresholds[i]);
     	}
 	}
-	
+
     // Proximity Settings
     unsigned char proximitySettings[] = {
         0xff,   //MHD_Prox_R
@@ -319,15 +319,15 @@ void initMPR121( void )
         0x00    //NFD_Prox_T
 	};
     for ( i=0; i<11; i++ ) writeI2c(TCH_SNCR_MHDPROXR+i,proximitySettings[i]);
-	
+
     unsigned char proxThresh[] = {
         PROX_THR_T, // Touch Threshold
         PROX_THR_R  // Release Threshold
 	};
     for ( i=0; i<2; i++ ) writeI2c(TCH_SNCR_EPROXTTH+i,proxThresh[i]);
-	
+
     writeI2c(TCH_SNCR_FIL_CFG,0x04);
-    
+
     // Set the electrode config to transition to active mode
     writeI2c(TCH_SNCR_ELE_CFG,0x0c);
 }
@@ -338,13 +338,13 @@ unsigned short getTchSwData( void )
 
 	//	Start Access
 	accessMPR121();
-	
+
 	if (read(i2cDscript, buf, 2) != 2) {	// Read back data into buf[]
 		printf("Unable to read from slave(Touch)\n");
 		//exit(1);
 		return 0xffff;
 	}
-	
+
 	return (buf[1]<<8) | buf[0];
 }
 
@@ -357,7 +357,7 @@ unsigned short getTchSwData( void )
 void accessADS1015( void )
 {
 	int		address = ADC_ADDRESS;  // I2C
-	
+
 	// Set Address
 	if (ioctl(i2cDscript, I2CSLAVE_, address) < 0){
 		printf("Unable to get bus access to talk to slave(ADC)\n");
@@ -368,11 +368,11 @@ void accessADS1015( void )
 void setNext( int adNum )
 {
 	unsigned char buf[3];
-	
+
 	buf[0] = 0x01;
 	buf[1] = 0xc3 + (adNum << 4);
 	buf[2] = 0x83;
-	
+
 	if ((write(i2cDscript, buf, 3)) != 3) {			// Write commands to the i2c port
 		printf("Error writing to i2c slave(ADC)\n");
 		//exit(1);
@@ -383,19 +383,19 @@ unsigned char getValue( void )
 {
 	unsigned char buf[2];
 	buf[0] = 0x00;								// This is the register we wish to read from
-	
+
 	if (write(i2cDscript, buf, 1) != 1) {			// Send the register to read from
 		printf("Error writing to i2c slave(ADC:read)\n");
 		//exit(1);
 		return 0xff;
 	}
-	
+
 	if (read(i2cDscript, buf, 1) != 1) {					// Read back data into buf[]
 		printf("Unable to read from slave(ADC)\n");
 		//exit(1);
 		return 0xff;
 	}
-	
+
 	return buf[0];
 }
 //-------------------------------------------------------------------------
@@ -403,7 +403,7 @@ void initADS1015( void )
 {
 	//	Start Access
 	accessADS1015();
-	
+
 	//	Init Parameter
 	setNext(0);
 }
@@ -411,13 +411,13 @@ void initADS1015( void )
 unsigned char getVolume( int number )
 {
 	unsigned char ret;
-	
+
 	accessADS1015();
 	ret = getValue();
-	
+
 	if ( number >= 2) setNext(0);
 	else setNext(number+1);
-	
+
 	return ret;
 }
 
@@ -432,7 +432,7 @@ unsigned char getVolume( int number )
 void accessADXL345( void )
 {
 	int		address = ACCEL_SENSOR_ADDRESS;  // I2C
-	
+
 	// Set Address
 	if (ioctl(i2cDscript, I2CSLAVE_, address) < 0){
 		printf("Unable to get bus access to talk to slave(ACCEL)\n");
@@ -451,7 +451,7 @@ void initADXL345( void )
 void getAccel( signed short* value )
 {
 	unsigned short tmp;
-	
+
 	accessADXL345();
 	tmp = readI2c(0x32);
 	tmp |= readI2c(0x33) << 8;
@@ -473,7 +473,7 @@ void getAccel( signed short* value )
 void accessBlinkM( void )
 {
 	int		address = LED_BLINKM_ADDRESS;  // I2C
-	
+
 	// Set Address
 	if (ioctl(i2cDscript, I2CSLAVE_, address) < 0){
 		printf("Unable to get bus access to talk to slave(LED)\n");
@@ -489,7 +489,7 @@ void writeBlinkM( unsigned char cmd, unsigned char* color )
 	buf[1] = *color;
 	buf[2] = *(color+1);
 	buf[3] = *(color+2);
-	
+
 	if ((write(i2cDscript, buf, 4)) != 4) {			// Write commands to the i2c port
 		printf("Error writing to i2c slave(LED)\n");
 		exit(1);
@@ -528,7 +528,7 @@ void changeColor( unsigned char* color )
 void accessAda88( void )
 {
 	int		address = LED_ADA88_ADDRESS;  // I2C
-	
+
 	// Set Address
 	if (ioctl(i2cDscript, I2CSLAVE_, address) < 0){
 		printf("Unable to get bus access to talk to slave(LED Matrix)\n");
@@ -540,13 +540,13 @@ void writeAda88( unsigned char* bitPtn )
 {
 	unsigned char buf[MATRIX_MAX*2+1];
 	int		i;
-	
+
 	buf[0] = 0;									// Commands for performing a ranging
 	for ( i=0; i<MATRIX_MAX; i++ ){
 		buf[i*2+1] = *(bitPtn+i);
 		buf[i*2+2] = 0;
 	}
-	
+
 	if ((write(i2cDscript, buf, MATRIX_MAX*2+1)) != MATRIX_MAX*2+1) {	// Write commands to the i2c port
 		printf("Error writing to i2c slave(LED Matrix)\n");
 		//exit(1);
@@ -557,7 +557,7 @@ void initAda88( void )
 {
 	unsigned char bitPtnClr[MATRIX_MAX] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 	unsigned char cmd;
-	
+
 	accessAda88();
 	cmd = 0x21;
 	if ((write(i2cDscript, &cmd, 1)) != 1) {			// Write commands to the i2c port

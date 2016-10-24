@@ -1,5 +1,5 @@
 //
-//  raspi_magicflute.c
+//  raspi_magicflute.cpp
 //  ToneGenerator
 //
 //  Created by 長谷部 雅彦 on 2014/02/22.
