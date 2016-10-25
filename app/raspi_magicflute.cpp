@@ -154,7 +154,7 @@ static void initGPIO( void )
 		sprintf(gpiodrv,"/sys/class/gpio/gpio%d/direction",i);
 		fd_dir = open(gpiodrv,O_RDWR);
 		if ( fd_dir < 0 ){
-			printf("Can't set direction\n");
+			printf("Can't set direction(Input)\n");
 			exit(EXIT_FAILURE);
 		}
 		write(fd_dir,"in",3);
@@ -166,7 +166,7 @@ static void initGPIO( void )
 		sprintf(gpiodrv,"/sys/class/gpio/gpio%d/direction",i);
 		fd_dir = open(gpiodrv,O_RDWR);
 		if ( fd_dir < 0 ){
-			printf("Can't set direction\n");
+			printf("Can't set direction(Output)\n");
 			exit(EXIT_FAILURE);
 		}
 		write(fd_dir,"out",4);
