@@ -114,15 +114,15 @@ void Raspi::analyseGPIO( void )
 
 	//	Switch Event Job
 	if ( swNew[0] != swOld[0] ){
-		if ( !swNew[0] ){ transposeEvent(num); }
+		if ( !swNew[0] ){ transposeEvent(0); }
 		swOld[0] = swNew[0];
 	}
 	if ( swNew[1] != swOld[1] ){
-		if ( !swNew[1] ){ transposeEvent(num); }
+		if ( !swNew[1] ){ transposeEvent(1); }
 		swOld[1] = swNew[1];
 	}
 	if ( swNew[2] != swOld[2] ){
-		if ( !swNew[0] ){ transposeEvent(num); }
+		if ( !swNew[0] ){ changeVoiceEvent(2); }
 		swOld[2] = swNew[2];
 	}
 
@@ -259,7 +259,7 @@ void Raspi::init( msgf::Msgf* tg )
 	tgptr = 0;
 	for ( int i=0; i<MAX_SW_NUM; i++ ) swOld[i] = 1;
 
-	changeTranspose( tg, 0 );
+	changeTranspose( 0 );
 
 	//	Time Measurement
 	gettimeofday(&tstr, NULL);
