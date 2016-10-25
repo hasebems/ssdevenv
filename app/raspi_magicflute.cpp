@@ -24,7 +24,7 @@
 //-------------------------------------------------------------------------
 //		Send Message
 //-------------------------------------------------------------------------
-static void sendMessageToMsgf( Raspi* rp, unsigned char msg0, unsigned char msg1, unsigned char msg2 )
+void Raspi::sendMessageToMsgf( unsigned char msg0, unsigned char msg1, unsigned char msg2 )
 {
 	unsigned char msg[3];
 	msg[0] = msg0; msg[1] = msg1; msg[2] = msg2;
@@ -34,10 +34,7 @@ static void sendMessageToMsgf( Raspi* rp, unsigned char msg0, unsigned char msg1
 //-------------------------------------------------------------------------
 //		Settings
 //-------------------------------------------------------------------------
-#define			MIDI_CENTER			64
-static unsigned char partTranspose = MIDI_CENTER;
-//-------------------------------------------------------------------------
-static void changeTranspose( Raspi* rp, unsigned char tp )
+void Raspi::changeTranspose( unsigned char tp )
 {
 	if ( tp == partTranspose ) return;
 
@@ -45,7 +42,7 @@ static void changeTranspose( Raspi* rp, unsigned char tp )
 	else if ( tp < MIDI_CENTER-6 ) partTranspose = MIDI_CENTER+6;
 	else partTranspose = tp;
 
-	sendMessageToMsgf( rp, 0xb0, 0x0c, partTranspose );
+	sendMessageToMsgf( 0xb0, 0x0c, partTranspose );
 	printf("Note Shift value: %d\n",partTranspose);
 
 	int nsx = partTranspose - MIDI_CENTER;
@@ -58,41 +55,35 @@ static void changeTranspose( Raspi* rp, unsigned char tp )
 //-------------------------------------------------------------------------
 //		GPIO Input
 //-------------------------------------------------------------------------
-#define			FIRST_INPUT_GPIO	9
-#define			MAX_SW_NUM			3
-#define			MAX_LED_NUM			1
-static int		swOld[MAX_SW_NUM] = {1,1,1};
-static int		gpioOutputVal[MAX_LED_NUM];
-//-------------------------------------------------------------------------
-static void ledOn( int num )
+void Raspi::ledOn( int num )
 {
 	write( gpioOutputVal[num], "1", 2 );
 }
 //-------------------------------------------------------------------------
-static void ledOff( int num )
+void Raspi::ledOff( int num )
 {
 	write( gpioOutputVal[num], "0", 2 );
 }
 //-------------------------------------------------------------------------
-static void transposeEvent( Raspi* rp, int num )
+void Raspi::transposeEvent( int num )
 {
 	int inc = 1;
 	if ( num == 1 ) inc = -1;
 	unsigned char tpTemp = partTranspose + inc;
-	changeTranspose(rp,tpTemp);
+	changeTranspose(tpTemp);
 }
 //-------------------------------------------------------------------------
-static void changeVoiceEvent( Raspi* rp, int num )
+void Raspi::changeVoiceEvent( int num )
 {
 	printf("Change Voice!\n");
 }
 //-------------------------------------------------------------------------
-static void (*const tFunc[MAX_SW_NUM])( Raspi* rp, int num ) =
-{
-	transposeEvent,
-	transposeEvent,
-	changeVoiceEvent
-};
+//static void (*const tFunc[MAX_SW_NUM])( Raspi* rp, int num ) =
+//{
+//	transposeEvent,
+//	transposeEvent,
+//	changeVoiceEvent
+//};
 //-------------------------------------------------------------------------
 void Raspi::analyseGPIO( void )
 {
@@ -122,15 +113,28 @@ void Raspi::analyseGPIO( void )
 	}
 
 	//	Switch Event Job
-	for (i=0; i<MAX_SW_NUM; i++ ){
-		if ( swNew[i] != swOld[i] ){
-			if ( !swNew[i] ){
-				//	When push
-				(*tFunc[i])(this,i);
-			}
-			swOld[i] = swNew[i];
-		}
+	if ( swNew[0] != swOld[0] ){
+		if ( !swNew[0] ){ transposeEvent(num); }
+		swOld[0] = swNew[0];
 	}
+	if ( swNew[1] != swOld[1] ){
+		if ( !swNew[1] ){ transposeEvent(num); }
+		swOld[1] = swNew[1];
+	}
+	if ( swNew[2] != swOld[2] ){
+		if ( !swNew[0] ){ transposeEvent(num); }
+		swOld[2] = swNew[2];
+	}
+
+//	for (i=0; i<MAX_SW_NUM; i++ ){
+//		if ( swNew[i] != swOld[i] ){
+//			if ( !swNew[i] ){
+//				//	When push
+//				(*tFunc[i])(this,i);
+//			}
+//			swOld[i] = swNew[i];
+//		}
+//	}
 }
 //-------------------------------------------------------------------------
 void Raspi::initGPIO( void )
@@ -187,7 +191,6 @@ void Raspi::initGPIO( void )
 //		event Loop
 //-------------------------------------------------------------------------
 #define		AVERAGE_TIMER_CNT		100		//	This times
-
 //-------------------------------------------------------------------------
 void Raspi::eventLoop( void )
 {
@@ -254,6 +257,8 @@ void Raspi::init( msgf::Msgf* tg )
 	timerCount = 0;
 	timeSumming = 0;
 	tgptr = 0;
+	for ( int i=0; i<MAX_SW_NUM; i++ ) swOld[i] = 1;
+
 	changeTranspose( tg, 0 );
 
 	//	Time Measurement

@@ -11,9 +11,24 @@
 
 #include	"msgf_if.h"
 
+
+//-------------------------------------------------------------------------
+//		Macros
+//-------------------------------------------------------------------------
+#define			FIRST_INPUT_GPIO	9
+#define			MAX_SW_NUM			3
+#define			MAX_LED_NUM			1
+#define			MIDI_CENTER			64
+
+//-------------------------------------------------------------------------
+//		Class define
+//-------------------------------------------------------------------------
 class Raspi {
 
 public:
+	Raspi():
+		partTranspose(MIDI_CENTER){}
+
 	void eventLoop( void );
 	void init( msgf::Msgf* tg );
 	void quit( void );
@@ -21,8 +36,21 @@ public:
 	msgf::Msgf* GetMsgfTg( void ){ return tgptr; }
 
 private:
+	void sendMessageToMsgf( unsigned char msg0, unsigned char msg1, unsigned char msg2 );
+	void changeTranspose( unsigned char tp );
+	void ledOn( int num );
+	void ledOff( int num );
+	void transposeEvent( int num );
+	void changeVoiceEvent( int num );
+
 	void initGPIO( void );
 	void analyseGPIO( void );
+
+	//-------------------------------------------------------------------------
+
+	unsigned char partTranspose;
+	int	swOld[MAX_SW_NUM];
+	int	gpioOutputVal[MAX_LED_NUM];
 
 	long formerTime;
 	long timeSumming;
