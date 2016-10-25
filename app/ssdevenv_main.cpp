@@ -419,7 +419,7 @@ int tick_msgf(	void *outputBuffer, void *inputBuffer,
 	}
 
 #if defined(__RASP_APP__)
-	raspi.eventLoop(tg);
+	raspi.eventLoop();
 #endif
 
 	return 0;
@@ -457,7 +457,7 @@ int init( int argc, char *argv[], TickData& data )
 #endif
 
 #if defined(__RASP_APP__)
-	raspi.init();
+	raspi.init(data.msgf);
 #endif
 
 	return 0;

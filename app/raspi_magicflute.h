@@ -14,8 +14,8 @@
 class Raspi {
 
 public:
-	void eventLoop( msgf::Msgf* tg );
-	void init( void );
+	void eventLoop( void );
+	void init( msgf::Msgf* tg );
 	void quit( void );
 
 	msgf::Msgf* GetMsgfTg( void ){ return tgptr; }

@@ -189,13 +189,10 @@ void Raspi::initGPIO( void )
 #define		AVERAGE_TIMER_CNT		100		//	This times
 
 //-------------------------------------------------------------------------
-void Raspi::eventLoop( msgf::Msgf* tg )
+void Raspi::eventLoop( void )
 {
 	struct	timeval tstr;
 	long	crntTime, diff;
-
-	//	Set MSGF Pointer
-	tgptr = tg;
 
 	//	Time Measurement
 	gettimeofday(&tstr, NULL);
@@ -222,10 +219,13 @@ void Raspi::eventLoop( msgf::Msgf* tg )
 //-------------------------------------------------------------------------
 //			Initialize
 //-------------------------------------------------------------------------
-void Raspi::init( void )
+void Raspi::init( msgf::Msgf* tg )
 {
 	struct	timeval tstr;
 	long	crntTime;
+
+	//	Set MSGF Pointer
+	tgptr = tg;
 
 	//--------------------------------------------------------
 	//	Initialize GPIO
@@ -254,7 +254,7 @@ void Raspi::init( void )
 	timerCount = 0;
 	timeSumming = 0;
 	tgptr = 0;
-	changeTranspose( 0 );
+	changeTranspose( tg, 0 );
 
 	//	Time Measurement
 	gettimeofday(&tstr, NULL);
