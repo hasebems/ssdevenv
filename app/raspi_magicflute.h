@@ -26,8 +26,8 @@ private:
 	long timeSumming;
 	int	timerCount;
 
-	unsigned char soundOn = 0;
-	msgf::Msgf* tgptr = 0;
+	unsigned char soundOn;
+	msgf::Msgf* tgptr;
 };
 
 #endif /* defined(__ToneGenerator__raspi_magicflute__) */

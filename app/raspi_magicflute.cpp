@@ -253,6 +253,7 @@ void Raspi::init( void )
 	soundOn = 0;
 	timerCount = 0;
 	timeSumming = 0;
+	tgptr = 0;
 	changeTranspose( 0 );
 
 	//	Time Measurement
