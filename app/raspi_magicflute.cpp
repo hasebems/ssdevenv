@@ -19,17 +19,17 @@
 #include 	"raspi_magicflute.h"
 #include	"raspi_hw.h"
 
-static unsigned char soundOn = 0;
+#include	"msgf_audio_buffer.h"
 
 //-------------------------------------------------------------------------
 //		Send Message
 //-------------------------------------------------------------------------
-void sendMessageToMsgf( unsigned char msg0, unsigned char msg1, unsigned char msg2 )
+static void sendMessageToMsgf( unsigned char msg0, unsigned char msg1, unsigned char msg2 )
 {
 	unsigned char msg[3];
 	msg[0] = msg0; msg[1] = msg1; msg[2] = msg2;
 	//	Call MSGF
-//	raspiaudio_Message( msg, 3 );
+	tgptr->sendMessage( 3, msg );
 }
 //-------------------------------------------------------------------------
 //		Settings
@@ -94,7 +94,7 @@ static void (*const tFunc[MAX_SW_NUM])( int num ) =
 	changeVoiceEvent
 };
 //-------------------------------------------------------------------------
-static void analyseGPIO( void )
+void Raspi::analyseGPIO( void )
 {
 	unsigned char note, vel;
 	int 	i;
@@ -133,7 +133,7 @@ static void analyseGPIO( void )
 	}
 }
 //-------------------------------------------------------------------------
-static void initGPIO( void )
+void Raspi::initGPIO( void )
 {
 	int	fd_exp, fd_dir, i;
 	char gpiodrv[64];
@@ -187,14 +187,15 @@ static void initGPIO( void )
 //		event Loop
 //-------------------------------------------------------------------------
 #define		AVERAGE_TIMER_CNT		100		//	This times
-static long formerTime;
-static long timeSumming;
-static int	timerCount;
+
 //-------------------------------------------------------------------------
-void RASP_eventLoop( void )
+void Raspi::eventLoop( msgf::Msgf* tg )
 {
 	struct	timeval tstr;
 	long	crntTime, diff;
+
+	//	Set MSGF Pointer
+	tgptr = tg;
 
 	//	Time Measurement
 	gettimeofday(&tstr, NULL);
@@ -221,7 +222,7 @@ void RASP_eventLoop( void )
 //-------------------------------------------------------------------------
 //			Initialize
 //-------------------------------------------------------------------------
-void RASP_init( void )
+void Raspi::init( void )
 {
 	struct	timeval tstr;
 	long	crntTime;
@@ -261,7 +262,7 @@ void RASP_init( void )
 //-------------------------------------------------------------------------
 //			Quit
 //-------------------------------------------------------------------------
-void RASP_quit( void )
+void Raspi::quit( void )
 {
 	quitI2c();
 }

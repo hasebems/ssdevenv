@@ -26,6 +26,7 @@
 #if defined(__RASP_APP__)
 	#include	"raspi_magicflute.h"
 	#include	"raspi_hw.h"
+	static	Raspi raspi;
 #endif
 
 #include <cstring>
@@ -418,7 +419,7 @@ int tick_msgf(	void *outputBuffer, void *inputBuffer,
 	}
 
 #if defined(__RASP_APP__)
-	RASP_eventLoop();
+	raspi.eventLoop(tg);
 #endif
 
 	return 0;
@@ -456,7 +457,7 @@ int init( int argc, char *argv[], TickData& data )
 #endif
 
 #if defined(__RASP_APP__)
-	RASP_init();
+	raspi.init();
 #endif
 
 	return 0;
@@ -558,7 +559,7 @@ int main( int argc, char *argv[] )
 
 cleanup:
 #if defined(__RASP_APP__)
-	RASP_quit();
+	raspi.quit();
 #endif
 
 #ifdef _MSGF_MF_

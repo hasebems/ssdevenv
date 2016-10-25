@@ -9,8 +9,25 @@
 #ifndef __ToneGenerator__raspi_magicflute__
 #define __ToneGenerator__raspi_magicflute__
 
-void RASP_eventLoop( void );
-void RASP_init( void );
-void RASP_quit( void );
+#include	"msgf_if.h"
+
+class Raspi {
+
+public:
+	void eventLoop( msgf::Msgf* tg );
+	void init( void );
+	void quit( void );
+
+private:
+	void initGPIO( void );
+	void analyseGPIO( void );
+
+	long formerTime;
+	long timeSumming;
+	int	timerCount;
+
+	unsigned char soundOn = 0;
+	msgf::Msgf* tgptr = 0;
+};
 
 #endif /* defined(__ToneGenerator__raspi_magicflute__) */
