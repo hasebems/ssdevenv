@@ -17,8 +17,6 @@
 #include <stdbool.h>
 
 #include 	"raspi_magicflute.h"
-
-#include	"raspi_cwrap.h"
 #include	"raspi_hw.h"
 
 static unsigned char soundOn = 0;
@@ -31,7 +29,7 @@ void sendMessageToMsgf( unsigned char msg0, unsigned char msg1, unsigned char ms
 	unsigned char msg[3];
 	msg[0] = msg0; msg[1] = msg1; msg[2] = msg2;
 	//	Call MSGF
-	raspiaudio_Message( msg, 3 );
+//	raspiaudio_Message( msg, 3 );
 }
 //-------------------------------------------------------------------------
 //		Settings
