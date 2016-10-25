@@ -265,4 +265,3 @@ void RASP_quit( void )
 {
 	quitI2c();
 }
-#endif
