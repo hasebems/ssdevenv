@@ -27,7 +27,8 @@ class Raspi {
 
 public:
 	Raspi():
-		partTranspose(MIDI_CENTER){}
+		partTranspose(MIDI_CENTER),
+		tgptr(0) {}
 
 	void eventLoop( void );
 	void init( msgf::Msgf* tg );

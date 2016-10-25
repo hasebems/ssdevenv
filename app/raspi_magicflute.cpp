@@ -29,7 +29,9 @@ void Raspi::sendMessageToMsgf( unsigned char msg0, unsigned char msg1, unsigned 
 	unsigned char msg[3];
 	msg[0] = msg0; msg[1] = msg1; msg[2] = msg2;
 	//	Call MSGF
-	GetMsgfTg()->sendMessage( 3, msg );
+	if ( tgptr ){
+		tgptr->sendMessage( 3, msg );
+	}
 }
 //-------------------------------------------------------------------------
 //		Settings
@@ -229,6 +231,10 @@ void Raspi::init( msgf::Msgf* tg )
 
 	//	Set MSGF Pointer
 	tgptr = tg;
+	soundOn = 0;
+	timerCount = 0;
+	timeSumming = 0;
+	for ( int i=0; i<MAX_SW_NUM; i++ ) swOld[i] = 1;
 
 	//--------------------------------------------------------
 	//	Initialize GPIO
@@ -249,15 +255,6 @@ void Raspi::init( msgf::Msgf* tg )
 	//	initialize Display
 	writeMark(3);		// "C"
 	ledOff(0);
-
-
-	//--------------------------------------------------------
-//	sendMessageToMsgf( 0xb0, 0x0b, 0 );
-	soundOn = 0;
-	timerCount = 0;
-	timeSumming = 0;
-	tgptr = 0;
-	for ( int i=0; i<MAX_SW_NUM; i++ ) swOld[i] = 1;
 
 	changeTranspose( 0 );
 
