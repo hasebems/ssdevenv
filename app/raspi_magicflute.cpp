@@ -29,7 +29,7 @@ void Raspi::sendMessageToMsgf( unsigned char msg0, unsigned char msg1, unsigned 
 	unsigned char msg[3];
 	msg[0] = msg0; msg[1] = msg1; msg[2] = msg2;
 	//	Call MSGF
-	rp->GetMsgfTg()->sendMessage( 3, msg );
+	GetMsgfTg()->sendMessage( 3, msg );
 }
 //-------------------------------------------------------------------------
 //		Settings
