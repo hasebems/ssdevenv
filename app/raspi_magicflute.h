@@ -18,6 +18,8 @@ public:
 	void init( void );
 	void quit( void );
 
+	msgf::Magf* GetMsgfTg( void ){ return tgptr; }
+
 private:
 	void initGPIO( void );
 	void analyseGPIO( void );

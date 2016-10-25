@@ -24,12 +24,12 @@
 //-------------------------------------------------------------------------
 //		Send Message
 //-------------------------------------------------------------------------
-static void sendMessageToMsgf( unsigned char msg0, unsigned char msg1, unsigned char msg2 )
+static void sendMessageToMsgf( Raspi* rp, unsigned char msg0, unsigned char msg1, unsigned char msg2 )
 {
 	unsigned char msg[3];
 	msg[0] = msg0; msg[1] = msg1; msg[2] = msg2;
 	//	Call MSGF
-	tgptr->sendMessage( 3, msg );
+	rp->GetMsgfTg()->sendMessage( 3, msg );
 }
 //-------------------------------------------------------------------------
 //		Settings
@@ -37,7 +37,7 @@ static void sendMessageToMsgf( unsigned char msg0, unsigned char msg1, unsigned 
 #define			MIDI_CENTER			64
 static unsigned char partTranspose = MIDI_CENTER;
 //-------------------------------------------------------------------------
-static void changeTranspose( unsigned char tp )
+static void changeTranspose( Raspi* rp, unsigned char tp )
 {
 	if ( tp == partTranspose ) return;
 
@@ -45,7 +45,7 @@ static void changeTranspose( unsigned char tp )
 	else if ( tp < MIDI_CENTER-6 ) partTranspose = MIDI_CENTER+6;
 	else partTranspose = tp;
 
-	sendMessageToMsgf( 0xb0, 0x0c, partTranspose );
+	sendMessageToMsgf( rp, 0xb0, 0x0c, partTranspose );
 	printf("Note Shift value: %d\n",partTranspose);
 
 	int nsx = partTranspose - MIDI_CENTER;
@@ -74,20 +74,20 @@ static void ledOff( int num )
 	write( gpioOutputVal[num], "0", 2 );
 }
 //-------------------------------------------------------------------------
-static void transposeEvent( int num )
+static void transposeEvent( Raspi* rp, int num )
 {
 	int inc = 1;
 	if ( num == 1 ) inc = -1;
 	unsigned char tpTemp = partTranspose + inc;
-	changeTranspose(tpTemp);
+	changeTranspose(rp,tpTemp);
 }
 //-------------------------------------------------------------------------
-static void changeVoiceEvent( int num )
+static void changeVoiceEvent( Raspi* rp, int num )
 {
 	printf("Change Voice!\n");
 }
 //-------------------------------------------------------------------------
-static void (*const tFunc[MAX_SW_NUM])( int num ) =
+static void (*const tFunc[MAX_SW_NUM])( Raspi* rp, int num ) =
 {
 	transposeEvent,
 	transposeEvent,
@@ -126,7 +126,7 @@ void Raspi::analyseGPIO( void )
 		if ( swNew[i] != swOld[i] ){
 			if ( !swNew[i] ){
 				//	When push
-				(*tFunc[i])(i);
+				(*tFunc[i])(this,i);
 			}
 			swOld[i] = swNew[i];
 		}
