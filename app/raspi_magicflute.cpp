@@ -81,7 +81,7 @@ void Raspi::changeVoiceEvent( int num )
 	sendMessageToMsgf( 0xc0, (++voiceNum)&0x01, 0 );
 }
 //-------------------------------------------------------------------------
-void (Raspi::Raspi::*swJumpTable[])( int num ) = {
+void (Raspi::*Raspi::swJumpTable[])( int num ) = {
 	&Raspi::transposeEvent,
 	&Raspi::transposeEvent,
 	&Raspi::changeVoiceEvent
