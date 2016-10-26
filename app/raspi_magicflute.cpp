@@ -122,29 +122,6 @@ void Raspi::analyseGPIO( void )
 			swOld[i] = swNew[i];
 		}
 	}
-
-//	if ( swNew[0] != swOld[0] ){
-//		if ( !swNew[0] ){ transposeEvent(0); }
-//		swOld[0] = swNew[0];
-//	}
-//	if ( swNew[1] != swOld[1] ){
-//		if ( !swNew[1] ){ transposeEvent(1); }
-//		swOld[1] = swNew[1];
-//	}
-//	if ( swNew[2] != swOld[2] ){
-//		if ( !swNew[2] ){ changeVoiceEvent(2); }
-//		swOld[2] = swNew[2];
-//	}
-
-//	for (i=0; i<MAX_SW_NUM; i++ ){
-//		if ( swNew[i] != swOld[i] ){
-//			if ( !swNew[i] ){
-//				//	When push
-//				(*tFunc[i])(this,i);
-//			}
-//			swOld[i] = swNew[i];
-//		}
-//	}
 }
 //-------------------------------------------------------------------------
 void Raspi::initGPIO( void )
