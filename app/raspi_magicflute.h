@@ -28,7 +28,8 @@ class Raspi {
 public:
 	Raspi():
 		partTranspose(MIDI_CENTER),
-		tgptr(0) {}
+		tgptr(0),
+		voiceNum(0) {}
 
 	void eventLoop( void );
 	void init( msgf::Msgf* tg );
@@ -47,15 +48,18 @@ private:
 	void initGPIO( void );
 	void analyseGPIO( void );
 
+	static void (Raspi::*swJumpTable[])( int num );
+
 	//-------------------------------------------------------------------------
 
 	unsigned char partTranspose;
 	int	swOld[MAX_SW_NUM];
 	int	gpioOutputVal[MAX_LED_NUM];
 
-	long formerTime;
-	long timeSumming;
-	int	timerCount;
+	long 	formerTime;
+	long 	timeSumming;
+	int		timerCount;
+	int		voiceNum;
 
 	unsigned char soundOn;
 	msgf::Msgf* tgptr;

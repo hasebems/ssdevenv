@@ -78,14 +78,15 @@ void Raspi::transposeEvent( int num )
 void Raspi::changeVoiceEvent( int num )
 {
 	printf("Change Voice!\n");
+	sendMessageToMsgf( 0xc0, (++voiceNum)&0x01, 0 );
 }
 //-------------------------------------------------------------------------
-//static void (*const tFunc[MAX_SW_NUM])( Raspi* rp, int num ) =
-//{
-//	transposeEvent,
-//	transposeEvent,
-//	changeVoiceEvent
-//};
+void (Raspi::Raspi::*swJumpTable[])( int num ) = {
+	&Raspi::transposeEvent,
+	&Raspi::transposeEvent,
+	&Raspi::changeVoiceEvent
+};
+
 //-------------------------------------------------------------------------
 void Raspi::analyseGPIO( void )
 {
@@ -115,18 +116,25 @@ void Raspi::analyseGPIO( void )
 	}
 
 	//	Switch Event Job
-	if ( swNew[0] != swOld[0] ){
-		if ( !swNew[0] ){ transposeEvent(0); }
-		swOld[0] = swNew[0];
+	for ( i=0; i<MAX_SW_NUM; i++ ){
+		if ( swNew[i] != swOld[i] ){
+			if ( !swNew[i] ){ (this->*swJumpTable[i])(i); }
+			swOld[i] = swNew[i];
+		}
 	}
-	if ( swNew[1] != swOld[1] ){
-		if ( !swNew[1] ){ transposeEvent(1); }
-		swOld[1] = swNew[1];
-	}
-	if ( swNew[2] != swOld[2] ){
-		if ( !swNew[0] ){ changeVoiceEvent(2); }
-		swOld[2] = swNew[2];
-	}
+
+//	if ( swNew[0] != swOld[0] ){
+//		if ( !swNew[0] ){ transposeEvent(0); }
+//		swOld[0] = swNew[0];
+//	}
+//	if ( swNew[1] != swOld[1] ){
+//		if ( !swNew[1] ){ transposeEvent(1); }
+//		swOld[1] = swNew[1];
+//	}
+//	if ( swNew[2] != swOld[2] ){
+//		if ( !swNew[2] ){ changeVoiceEvent(2); }
+//		swOld[2] = swNew[2];
+//	}
 
 //	for (i=0; i<MAX_SW_NUM; i++ ){
 //		if ( swNew[i] != swOld[i] ){
@@ -256,7 +264,7 @@ void Raspi::init( msgf::Msgf* tg )
 	writeMark(3);		// "C"
 	ledOff(0);
 
-	changeTranspose( 0 );
+	changeTranspose( MIDI_CENTER );
 
 	//	Time Measurement
 	gettimeofday(&tstr, NULL);
