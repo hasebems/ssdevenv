@@ -70,7 +70,7 @@ struct TickData {
 	// Default constructor.
 	TickData()
 	: wvout(0), //instrument(0), voicer(0),
-	volume(1.0), t60(0.75),
+	volume(1.0), t60(2.0),
 	nWvOuts(0), nVoices(1), currentVoice(0), channels(2), counter(0),
 	realtime( false ), settling( false ), haveMessage( false ) {}
 };

@@ -526,7 +526,7 @@ void accessAda88( void )
 	// Set Address
 	if (ioctl(i2cDscript, I2CSLAVE_, address) < 0){
 		printf("Unable to get bus access to talk to slave(LED Matrix)\n");
-		exit(1);
+		//exit(1);
 	}
 }
 //-------------------------------------------------------------------------
@@ -556,19 +556,19 @@ void initAda88( void )
 	cmd = 0x21;
 	if ((write(i2cDscript, &cmd, 1)) != 1) {			// Write commands to the i2c port
 		printf("Error writing to i2c slave(LED Matrix)\n");
-		exit(1);
+		//exit(1);
 	}
 
 	cmd = HT16K33_BLINK_CMD|HT16K33_BLINK_DISPLAYON|(HT16K33_BLINK_OFF<<1);
 	if ((write(i2cDscript, &cmd, 1)) != 1) {			// Write commands to the i2c port
 		printf("Error writing to i2c slave(LED Matrix)\n");
-		exit(1);
+		//exit(1);
 	}
 
 	cmd = HT16K33_CMD_BRIGHTNESS | 0x0f;
 	if ((write(i2cDscript, &cmd, 1)) != 1) {			// Write commands to the i2c port
 		printf("Error writing to i2c slave(LED Matrix)\n");
-		exit(1);
+		//exit(1);
 	}
 
 	writeAda88(bitPtnClr);		//	Clear All LEDs
