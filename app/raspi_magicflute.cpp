@@ -97,7 +97,6 @@ void (Raspi::*Raspi::swJumpTable[])( int num ) = {
 //-------------------------------------------------------------------------
 void Raspi::analyseGPIO( void )
 {
-	unsigned char note, vel;
 	int 	i;
 	char	gpioPath[64];
 	int		fd_in[MAX_SW_NUM], swNew[MAX_SW_NUM];
@@ -228,7 +227,6 @@ void Raspi::eventLoop( void )
 void Raspi::init( msgf::Msgf* tg )
 {
 	struct	timeval tstr;
-	long	crntTime;
 
 	//	Set MSGF Pointer
 	tgptr = tg;

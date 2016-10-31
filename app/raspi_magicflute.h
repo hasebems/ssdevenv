@@ -29,9 +29,12 @@ class Raspi {
 public:
 	Raspi():
 		partTranspose(MIDI_CENTER),
-		tgptr(0),
+		formerTime(0),
+		timeSumming(0),
+		timerCount(0),
 		voiceNum(0),
-		autoDisplayChangeCount(AUTO_DISPLAY_DISABLE) {}
+		autoDisplayChangeCount(AUTO_DISPLAY_DISABLE),
+		tgptr(0) {}
 
 	void eventLoop( void );
 	void init( msgf::Msgf* tg );
