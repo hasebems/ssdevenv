@@ -34,7 +34,17 @@ void Raspi::sendMessageToMsgf( unsigned char msg0, unsigned char msg1, unsigned 
 	}
 }
 //-------------------------------------------------------------------------
-//		Settings
+//		Change Transpose
+//-------------------------------------------------------------------------
+void Raspi::displayTranspose( void )
+{
+	int nsx = partTranspose - MIDI_CENTER;
+	if ( nsx < 0 ) nsx += 12; //	0 <= nsx <= 11
+	else if ( nsx > 12 ) nsx -= 12;
+
+	const int tCnv[12] = {3,12,4,13,5,6,15,7,9,1,10,2};
+	writeMark(tCnv[nsx]);
+}
 //-------------------------------------------------------------------------
 void Raspi::changeTranspose( unsigned char tp )
 {
@@ -47,12 +57,7 @@ void Raspi::changeTranspose( unsigned char tp )
 	sendMessageToMsgf( 0xb0, 0x0c, partTranspose );
 	printf("Note Shift value: %d\n",partTranspose);
 
-	int nsx = partTranspose - MIDI_CENTER;
-	if ( nsx < 0 ) nsx += 12; //	0 <= nsx <= 11
-	else if ( nsx > 12 ) nsx -= 12;
-
-	const int tCnv[12] = {3,12,4,13,5,6,15,7,9,1,10,2};
-	writeMark(tCnv[nsx]);
+	displayTranspose();
 }
 //-------------------------------------------------------------------------
 //		GPIO Input
@@ -79,6 +84,8 @@ void Raspi::changeVoiceEvent( int num )
 {
 	printf("Change Voice!\n");
 	sendMessageToMsgf( 0xc0, (++voiceNum)&0x01, 0 );
+	autoDisplayChangeCount = 0;
+	writeMark(voiceNum&0x01 + 16);
 }
 //-------------------------------------------------------------------------
 void (Raspi::*Raspi::swJumpTable[])( int num ) = {
@@ -196,6 +203,15 @@ void Raspi::eventLoop( void )
 	timeSumming += diff;
 	formerTime = crntTime;
 	timerCount++;
+
+	//	Auto Display Change
+	if ( autoDisplayChangeCount != AUTO_DISPLAY_DISABLE ){
+		autoDisplayChangeCount += diff;
+		if ( autoDisplayChangeCount > 2000 ){
+			displayTranspose();
+			autoDisplayChangeCount = AUTO_DISPLAY_DISABLE;
+		}
+	}
 
 	//	Measure Main Loop Time & Make heartbeats
 	if ( timerCount >= AVERAGE_TIMER_CNT ){

@@ -19,6 +19,7 @@
 #define			MAX_SW_NUM			3
 #define			MAX_LED_NUM			1
 #define			MIDI_CENTER			64
+#define			AUTO_DISPLAY_DISABLE	(-1)
 
 //-------------------------------------------------------------------------
 //		Class define
@@ -29,7 +30,8 @@ public:
 	Raspi():
 		partTranspose(MIDI_CENTER),
 		tgptr(0),
-		voiceNum(0) {}
+		voiceNum(0),
+		autoDisplayChangeCount(AUTO_DISPLAY_DISABLE) {}
 
 	void eventLoop( void );
 	void init( msgf::Msgf* tg );
@@ -39,6 +41,7 @@ public:
 
 private:
 	void sendMessageToMsgf( unsigned char msg0, unsigned char msg1, unsigned char msg2 );
+	void displayTranspose( void );
 	void changeTranspose( unsigned char tp );
 	void ledOn( int num );
 	void ledOff( int num );
@@ -60,6 +63,7 @@ private:
 	long 	timeSumming;
 	int		timerCount;
 	int		voiceNum;
+	int		autoDisplayChangeCount;
 
 	unsigned char soundOn;
 	msgf::Msgf* tgptr;
