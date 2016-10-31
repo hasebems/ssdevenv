@@ -85,7 +85,7 @@ void Raspi::changeVoiceEvent( int num )
 	printf("Change Voice!\n");
 	sendMessageToMsgf( 0xc0, (++voiceNum)&0x01, 0 );
 	autoDisplayChangeCount = 0;
-	writeMark(voiceNum&0x01 + 16);
+	writeMark((voiceNum&0x01) + 16);
 }
 //-------------------------------------------------------------------------
 void (Raspi::*Raspi::swJumpTable[])( int num ) = {
